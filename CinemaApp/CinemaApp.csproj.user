@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Authorization.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Hall1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="NewSeance.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SeanceControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SeanceCreator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Authorization.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Hall1.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NewSeance.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SeanceControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SeanceCreator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
