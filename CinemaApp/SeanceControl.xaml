@@ -34,10 +34,18 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.RowSpan="13" Grid.ColumnSpan="6" Margin="0 5 0 0">
- 
-        </DataGrid>
-        <Button Background="purple" x:Name="Update" Grid.Column="6" Grid.Row="8" Content="Изменить" Margin="5 0 5 0"  />
-        <Button Background="Purple" x:Name="Delete" Grid.Column="6" Grid.Row="10" Content="Удалить" Margin="5 0 5 0"  />
+        <Label Content="Сеансы" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="3"/>
+        <ComboBox x:Name="chooseFilmComboBox" Grid.Row="1" materialDesign:HintAssist.Hint="Выберите фильм" FontSize="20" Grid.ColumnSpan="2" Padding="0 20 0 0" Margin="30 0 0 0" LostMouseCapture="chooseFilmComboBox_LostMouseCapture">
+            
+        </ComboBox>
+        <ComboBox x:Name="chooseHallComboBox" Grid.Row="1" Grid.Column="5" materialDesign:HintAssist.Hint="Выберите зал" FontSize="20" Padding="0 20 0 0" LostMouseCapture="ComboBox_LostMouseCapture">
+            <ComboBoxItem Content="Зал 1"/>
+            <ComboBoxItem Content="Зал 2"/>
+            <ComboBoxItem Content="Зал 3"/>
+            <ComboBoxItem Content="Зал 4"/>
+            <ComboBoxItem Content="Зал 5"/>
+            <ComboBoxItem Content="Выберите зал"/>
+        </ComboBox>
+        <Calendar Grid.ColumnSpan="1" Grid.Row="3"  Grid.RowSpan="5" Margin="30 0 0 0"> </Calendar>
     </Grid>
 </Page>

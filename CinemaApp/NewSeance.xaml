@@ -34,14 +34,39 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Content="Новый фильм" FontSize="22" Margin="70 0 70 0" HorizontalAlignment="Center"/>
-        <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" BorderBrush="Gray" FontSize="20" Padding="5 5 0 0"
-                 materialDesign:HintAssist.Hint="Название зала" BorderThickness="2"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" BorderBrush="Gray" FontSize="20" Padding="5 5 0 0 " 
-                 materialDesign:HintAssist.Hint="Название фильма" BorderThickness="2"/>
-        <DatePicker Grid.Row="3" Grid.ColumnSpan="2" Grid.Column="4" materialDesign:HintAssist.Hint="Дата сеанса" FontSize="20"></DatePicker>
-        <materialDesign:TimePicker Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Время сеанса"
-                                   FontSize="20"></materialDesign:TimePicker>
-        <Button Background="Purple" Content="Добавить сеанс" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="3" Margin="100 0 100 0"/>
+        <Label  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Content="Новый фильм" FontSize="22"  HorizontalAlignment="Center"/>
+        <TextBox Grid.Row="3" Grid.Column="0 " Grid.ColumnSpan="2" BorderBrush="Gray" FontSize="20" Padding="5 20 0 0" Margin="30 0 0 0"
+                 materialDesign:HintAssist.Hint="Название фильма" BorderThickness="2" Cursor="IBeam" />
+        <TextBox Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" BorderBrush="Gray" FontSize="20" Padding="5 20 0 0 " Margin="30 0 0 0"
+                 materialDesign:HintAssist.Hint="Длительность (мин)" BorderThickness="2"/>
+        <ComboBox Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Ограничение" FontSize="20" Margin="30 0 0 0"> 
+            <ComboBoxItem Content="0+"></ComboBoxItem>
+            <ComboBoxItem Content="6+"></ComboBoxItem>
+            <ComboBoxItem Content="12+"></ComboBoxItem>
+            <ComboBoxItem Content="16+"></ComboBoxItem>
+            <ComboBoxItem Content="18+"></ComboBoxItem>
+        </ComboBox>
+        <TextBox Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Grid.RowSpan="3" Margin="30 0 0 0" materialDesign:HintAssist.Hint="Описание" Padding="5 5 5 0" TextWrapping="Wrap" AcceptsReturn="True" FontSize="20" BorderBrush="Gray" BorderThickness="2" Cursor="IBeam"> </TextBox>
+        <GroupBox Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="9" Header="Жанр" HorizontalAlignment="Center" MinWidth="600">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" >
+                    <CheckBox Content="Боевик" FontSize="22" ></CheckBox>
+                    <CheckBox Content="Ужасы" FontSize="22" ></CheckBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    
+                </StackPanel>
+            </Grid>
+
+           
+        </GroupBox>
+        <DatePicker Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2" Margin=" 0 0 30 0" materialDesign:HintAssist.Hint="Дата выхода в прокат" FontSize="20"></DatePicker>
+        <DatePicker Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="2" Margin=" 0 0 30 0" materialDesign:HintAssist.Hint="Дата окончания проката" FontSize="20"></DatePicker>
+        <Button Content="Добавить фильм" Background="Purple" FontSize="20" Grid.Column="5" Grid.Row="8" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0 0 80 0" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="150" MinHeight="50"></Button>
+        <Button Content="Сеансы" Background="Purple" FontSize="20" Grid.Column="5" Grid.Row="9" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0 0 80 0" VerticalAlignment="Center" HorizontalAlignment="Center" MinWidth="190" MinHeight="50" Cursor="Hand"> </Button>
     </Grid>
 </Page>

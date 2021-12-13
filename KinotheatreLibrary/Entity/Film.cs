@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Linq;
 
 namespace CinemaLibrary.Entity
 {
@@ -23,5 +24,12 @@ namespace CinemaLibrary.Entity
         [Required]
         public DateTime DateFinish { get; set; }
 
+        public static List<string> GetFilmName()
+        {
+            using (var db = new ApplicationContext())
+            {
+                return db.Film.Select(x => x.Name).ToList();
+            }
+        }
     }
 }
