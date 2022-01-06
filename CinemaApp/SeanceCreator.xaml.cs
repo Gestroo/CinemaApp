@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CinemaLibrary.Entity;
 
 namespace CinemaApp
 {
@@ -17,12 +18,14 @@ namespace CinemaApp
     /// </summary>
     public partial class SeanceCreator : Window
     {
-        public SeanceCreator()
+        public SeanceCreator(Personal personal)
         {
+            newseance = new NewSeance(this);
             InitializeComponent();
             WindowState = WindowState.Maximized;
+            LoadName(personal);
         }
-        private Page newseance = new NewSeance();
+        private Page newseance;
         private Page seancecontrol = new SeanceControl();
         private void NewSeanceButton_Click(object sender, RoutedEventArgs e)
         {
@@ -33,8 +36,12 @@ namespace CinemaApp
             seanceCreator.Navigate(newseance);
 
         }
-
-        private void SeanceControlButton_Click(object sender, RoutedEventArgs e)
+        public void LoadName(Personal personal)
+        {
+            NameTextBlock.FontSize = 20;
+            NameTextBlock.Text = personal.FullName;
+        }
+        public void PageControl() 
         {
             NewSeanceButton.Background = Brushes.Purple;
             SeanceControlButton.Background = Brushes.Gray;
@@ -42,12 +49,24 @@ namespace CinemaApp
             SeanceControlButton.BorderBrush = Brushes.Black;
             seanceCreator.Navigate(seancecontrol);
         }
+        private void SeanceControlButton_Click(object sender, RoutedEventArgs e)
+        {
+            PageControl();
+        }
 
         private void SignOut_Click(object sender, RoutedEventArgs e)
         {
-            Authorization authorization = new Authorization();
-            authorization.Show();
-            this.Close();
+            MessageBoxResult result = MessageBox.Show(
+                "Выйти из учетной записи?",
+                "Выход",
+                MessageBoxButton.OKCancel);
+
+            if (result == MessageBoxResult.OK)
+            {
+                Authorization authorization = new Authorization();
+                authorization.Show();
+                this.Close();
+            }
         }
     }
 }

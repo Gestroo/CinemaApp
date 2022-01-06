@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaLibrary", "KinotheatreLibrary\CinemaLibrary.csproj", "{B7E048C8-7DF9-4041-8E2D-22B5BE2861E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CinemaLibrary", "CinemaLibrary\CinemaLibrary.csproj", "{B7E048C8-7DF9-4041-8E2D-22B5BE2861E6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cinema", "Cinema\Cinema.csproj", "{0E89618F-E1C0-4E3D-8983-5D9922A79A8E}"
 EndProject

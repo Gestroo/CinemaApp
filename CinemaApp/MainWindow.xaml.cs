@@ -22,28 +22,53 @@ namespace CinemaApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(Personal personal)
         {
-            
+
             InitializeComponent();
             WindowState = WindowState.Maximized;
             DgInsert();
+            LoadGenres();
+            LoadName(personal);
         }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DateP.SelectedDate == Convert.ToDateTime("29/11/21"))
             { }
         }
+        public void LoadName(Personal personal) 
+        {
+            NameTextBlock.FontSize = 20;
+            NameTextBlock.Text = personal.FullName;
+        }
         public void DgInsert()
         {
             dgSeances.ItemsSource = Seance.GetSeances();
         }
 
+        public void LoadGenres() 
+        {
+            var genres = Genre.GetGenres();
+            genresComboBox.ItemsSource = genres;
+        }
         private void SignOutButton_Click(object sender, RoutedEventArgs e)
         {
-            Authorization authorization = new Authorization();
-            authorization.Show();
-            this.Close();
+            MessageBoxResult result = MessageBox.Show(
+                "Выйти из учетной записи?",
+                "Выход",
+                MessageBoxButton.OKCancel);
+
+            if (result == MessageBoxResult.OK)
+            {
+                Authorization authorization = new Authorization();
+                authorization.Show();
+                this.Close();
+            }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var textbox = sender as TextBox;
 
         }
     }

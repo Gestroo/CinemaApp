@@ -66,13 +66,25 @@
             SelectedDateChanged="DatePicker_SelectedDateChanged" 
             materialDesign:HintAssist.Hint="Выберите дату">
 		</DatePicker>
-		<DataGrid
+		<DataGrid 
             Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="13"
             Margin="0 8 0 10" x:Name="dgSeances"
-            FontSize="18">
+            FontSize="18" AutoGenerateColumns="False" ItemsSource="{Binding}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Фильм" Width="*" Binding="{Binding Path=DateTime }" />
+                <DataGridTextColumn Header="Дата" Width="*" Binding="{Binding Path=RouteName }" />
+                <DataGridTextColumn Header="Время" Width="*" Binding="{Binding Path=WayToTravel }" />
+                <DataGridTextColumn Header="Жанр" Width="*" Binding="{Binding Path=CompanyName }" />
+                <DataGridTextColumn Header="Ограничение" Width="*" Binding="{Binding Path=PeopleAmount }" />
+                <DataGridTextColumn Header="Зал" Width="*" Binding="{Binding Path=Status }" />
+            </DataGrid.Columns>
+            
+        </DataGrid>
+		<TextBox Grid.Row="0"  Grid.Column="1" Margin="10 0 5 9.5 " MaxHeight="40" Padding="0 5 0 0" materialDesign:HintAssist.Hint="Поиск фильма" FontSize="18" TextChanged="TextBox_TextChanged"></TextBox>
 
-		</DataGrid>
-		<TextBox Grid.Row="0"  Grid.Column="1" Margin="10 0 5 9.5 " MaxHeight="40" Padding="0 5 0 0" materialDesign:HintAssist.Hint="Поиск фильма" FontSize="18"></TextBox>
+        <TextBlock x:Name="NameTextBlock" HorizontalAlignment="Center" Grid.Column="6" Grid.Row="12">
+           
+        </TextBlock>
         <Button x:Name="SignOutButton"  Grid.Column="6" Margin="40 0 40 0"  Grid.Row="12" MinHeight="50" Grid.RowSpan="2" Click="SignOutButton_Click" Cursor="Hand">
             <TextBlock TextAlignment="Center" FontSize="16">
                 Сменить 
@@ -92,7 +104,7 @@
         <ComboBox Grid.Column="4" Padding="5 5 0 0" MaxHeight="40" materialDesign:HintAssist.Hint="Выберите зал" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray">
             <ComboBoxItem Content="Зал"/>
         </ComboBox>
-        <ComboBox Grid.Column="2" Padding="5 5 0 0" MaxHeight ="40" materialDesign:HintAssist.Hint="Выберите жанр" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray"> 
+        <ComboBox x:Name="genresComboBox" Grid.Column="2" Padding="5 5 0 0" MaxHeight ="40" materialDesign:HintAssist.Hint="Выберите жанр" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray"> 
             
         </ComboBox>
     </Grid>

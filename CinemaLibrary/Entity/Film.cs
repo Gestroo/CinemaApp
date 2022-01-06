@@ -14,8 +14,7 @@ namespace CinemaLibrary.Entity
         [Required]
         public int Duration { get; set; }
         [Required]
-        public string Genre { get; set; }
-        [MaxLength(2)]
+        public virtual List<Genre> Genre { get; set; }
         [Required]
         public int Restriction { get; set; }
         public string Description { get; set; }
@@ -24,12 +23,17 @@ namespace CinemaLibrary.Entity
         [Required]
         public DateTime DateFinish { get; set; }
 
+        public Film() { Genre = new List<Genre>(); }
+
+        private static ApplicationContext db = Context.Db;
         public static List<string> GetFilmName()
+        {  
+           return db.Film.Select(x => x.Name).ToList();
+        }
+        public static void Add(Film film) 
         {
-            using (var db = new ApplicationContext())
-            {
-                return db.Film.Select(x => x.Name).ToList();
-            }
+            db.Film.Add(film);
+            db.SaveChanges();
         }
     }
 }

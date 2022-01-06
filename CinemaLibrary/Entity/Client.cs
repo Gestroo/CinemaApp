@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CinemaLibrary.Entity
 {
-    public class Personal
+    public class Client
     {
         public int ID { get; set; }
         [Required]
@@ -17,7 +17,20 @@ namespace CinemaLibrary.Entity
         [Required]
         public string LastName { get; set; }
         public string MiddleName { get; set; }//отчество
+        public string FullName
+        {
+            get
+            {
+                var temp = $"{LastName} {FirstName.Substring(0, 1)}.";
+                if (MiddleName != null) temp += $" {MiddleName.Substring(0, 1)}.";
+                return temp;
+            }
+        }
         [Required]
-        public Role PersonalRole { get; set; }
+        [MaxLength(15)]
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
+        [Required]
+        public DateTime BirthDate { get; set; }
     }
 }

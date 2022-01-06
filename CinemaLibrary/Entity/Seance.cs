@@ -11,15 +11,15 @@ namespace CinemaLibrary.Entity
     {
         public int ID { get; set; }
         [Required]
-        public CinemaHall CinemaHall { get; set; }
+        public virtual CinemaHall CinemaHall { get; set; }
         [Required]
-        public Film Film { get; set; }
+        public virtual Film Film { get; set; }
         [Required]
         public DateTime SeanceDate { get; set; }
-
+        private static ApplicationContext db = Context.Db;
         public static List<Seance> GetSeances() 
         {
-            using (var db = new ApplicationContext()) { return db.Seance.ToList(); }
+             { return db.Seance.ToList(); }
         }
     }
 }

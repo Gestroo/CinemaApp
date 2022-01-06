@@ -9,9 +9,12 @@ namespace CinemaLibrary.Entity
     {
         public int ID { get; set; }
         [Required]
-        public CinemaHall CinemaHall { get; set; }
+        public virtual CinemaHall CinemaHall { get; set; }
         [Required]
         public int RowNumber { get; set; }
-        public List<HallSeat> Seats { get; set; } = new List<HallSeat>(); 
+        [Required]
+        public virtual List<HallSeat> Seats { get; set; } 
+
+        public HallRow() {Seats = new List<HallSeat>(); }
     }
 }

@@ -23,7 +23,7 @@ namespace CinemaApp
         public SeanceControl()
         {
             InitializeComponent();
-            GetFilmNameComboBox();
+           GetFilmNameComboBox();
         }
         public void GetFilmNameComboBox()
         {
@@ -40,6 +40,24 @@ namespace CinemaApp
         private void ComboBox_LostMouseCapture(object sender, MouseEventArgs e)
         {
             if (chooseHallComboBox.Text == "Выберите зал") chooseHallComboBox.Text = "";
+        }
+
+        private void saveSeancesButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show(
+               "Сохранить изменения?",
+               "Сохранить",
+               MessageBoxButton.OKCancel);
+            if (result == MessageBoxResult.OK)
+            {
+
+                
+            }
+        }
+
+        private void chooseHallComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

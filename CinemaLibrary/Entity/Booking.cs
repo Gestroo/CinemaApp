@@ -9,9 +9,14 @@ namespace CinemaLibrary.Entity
     {
         public int ID { get; set; }
         [Required]
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
         [Required]
         public DateTime DateTime { get; set; }
-        public List<Reservation> Reservations { get; set; } = new List<Reservation>();
+        public virtual List<Reservation> Reservations { get; set; }
+
+
+        public Booking() { Reservations = new List<Reservation>(); }
     }
+
+    
 }

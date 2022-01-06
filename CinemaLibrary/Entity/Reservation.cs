@@ -5,11 +5,10 @@ using System.Text;
 
 namespace CinemaLibrary.Entity
 {
-    public class CashBox //билетная касса
+    public class Reservation
     {
-    [Key]
-        public int CashBoxNumber { get; set; }
+        public int ID { get; set; }
         [Required]
-        public Personal Personal { get; set; }
+        public virtual Ticket Ticket { get; set; }
     }
 }

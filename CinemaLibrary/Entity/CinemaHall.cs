@@ -11,6 +11,9 @@ namespace CinemaLibrary.Entity
         public int HallNumber { get; set; }
         [Required]
         public string HallName { get; set; }
-        public List<HallRow> Rows { get; set; } = new List<HallRow>();
+        [Required]
+        public virtual List<HallRow> Rows { get; set; } 
+
+        public CinemaHall() { Rows = new List<HallRow>(); }
     }
 }

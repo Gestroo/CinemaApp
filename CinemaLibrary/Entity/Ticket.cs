@@ -10,14 +10,14 @@ namespace CinemaLibrary.Entity
         public int ID { get; set; }
         public int TicketNumber { get; set; }
         [Required]
-        public HallRow Row{ get; set; }
+        public virtual HallRow Row{ get; set; }
         [Required]
-        public HallSeat Seat { get; set; }
+        public virtual HallSeat Seat { get; set; }
         [Required]
         public decimal TotalPrice { get; set; }
         public bool Reservation { get; set; }
         [Required]
-        public CashBox CashBox { get; set; }
+        public virtual CashBox CashBox { get; set; }
 
     }
 }
