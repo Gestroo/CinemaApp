@@ -14,6 +14,8 @@ namespace CinemaLibrary.Entity
         public int RowNumber { get; set; }
         [Required]
         public virtual List<HallSeat> Seats { get; set; } 
+        
+        public int CinemaHallID { get; set; }
 
         public HallRow() {Seats = new List<HallSeat>(); }
     }

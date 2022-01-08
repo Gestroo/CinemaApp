@@ -30,6 +30,8 @@ namespace CinemaLibrary.Entity
         {  
            return db.Film.Select(x => x.Name).ToList();
         }
+        public static List<Film> GetFilms() => db.Film.ToList(); //лямбда-выражение заменяет return
+        
         public static void Add(Film film) 
         {
             db.Film.Add(film);

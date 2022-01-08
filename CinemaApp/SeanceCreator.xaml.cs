@@ -20,20 +20,20 @@ namespace CinemaApp
     {
         public SeanceCreator(Personal personal)
         {
-            newseance = new NewSeance(this);
+
             InitializeComponent();
             WindowState = WindowState.Maximized;
             LoadName(personal);
         }
-        private Page newseance;
-        private Page seancecontrol = new SeanceControl();
+
+        
         private void NewSeanceButton_Click(object sender, RoutedEventArgs e)
         {
             NewSeanceButton.Background = Brushes.Gray;
             SeanceControlButton.Background = Brushes.Purple;
             NewSeanceButton.BorderBrush = Brushes.Black;
             SeanceControlButton.BorderBrush = Brushes.Purple;
-            seanceCreator.Navigate(newseance);
+            seanceCreator.Navigate(new NewSeance(this));
 
         }
         public void LoadName(Personal personal)
@@ -47,7 +47,15 @@ namespace CinemaApp
             SeanceControlButton.Background = Brushes.Gray;
             NewSeanceButton.BorderBrush = Brushes.Purple;
             SeanceControlButton.BorderBrush = Brushes.Black;
-            seanceCreator.Navigate(seancecontrol);
+            seanceCreator.Navigate(new SeanceControl());
+        }
+        public void PageControl(Film film)
+        {
+            NewSeanceButton.Background = Brushes.Purple;
+            SeanceControlButton.Background = Brushes.Gray;
+            NewSeanceButton.BorderBrush = Brushes.Purple;
+            SeanceControlButton.BorderBrush = Brushes.Black;
+            seanceCreator.Navigate(new SeanceControl(film));
         }
         private void SeanceControlButton_Click(object sender, RoutedEventArgs e)
         {

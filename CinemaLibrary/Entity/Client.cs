@@ -13,9 +13,10 @@ namespace CinemaLibrary.Entity
         [Required]
         public string Password { get; set; }
         [Required]
-        public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
+        [Required]
+        public string FirstName { get; set; }
+
         public string MiddleName { get; set; }//отчество
         public string FullName
         {

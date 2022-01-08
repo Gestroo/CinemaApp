@@ -21,5 +21,10 @@ namespace CinemaLibrary.Entity
         {
              { return db.Seance.ToList(); }
         }
+        public static void Add(Seance seance)
+        {
+            db.Seance.Add(seance);
+            db.SaveChanges();
+        }
     }
 }

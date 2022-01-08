@@ -24,23 +24,43 @@ namespace CinemaApp
         {
             new ApplicationContext(ApplicationContext.GetDb());
             InitializeComponent();
-
+            AddSeats();
+            AddHalls();
         }
 
 
+        private void AddSeats()
+        {
+            CinemaHall hall1 = new CinemaHall
+            {
+                HallName = "Зал 1"
+            };
+            for (int i = 1; i < 11; i++)
+            {
+                new HallSeat()
+                {
+                    SeatNumber = i
+                };
+
+            }
+        }
+        private void AddHalls() 
+        {
+
+        }
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
             var personal = Personal.GetPersonal(LoginTextBox.Text.Trim(), GetHash(PasswordBox.Password.Trim()));
 
             if (personal != null)
             {
-                if (personal.PersonalRole.ID == 1)
+                if (personal.Role.ID == 1)
                 {
                     SeanceCreator window = new SeanceCreator(personal);
                     window.Show();
                     this.Close();
                 }
-                else if (personal.PersonalRole.ID == 2)
+                else if (personal.Role.ID == 2)
                 {
                     MainWindow window = new MainWindow(personal);
                     window.Show();

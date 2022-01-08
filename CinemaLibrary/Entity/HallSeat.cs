@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Linq;
 
 namespace CinemaLibrary.Entity
 {
@@ -13,5 +14,8 @@ namespace CinemaLibrary.Entity
         public virtual HallRow HallRow { get; set; }
         [Required]
         public int SeatNumber { get; set; }
+        private static ApplicationContext db = Context.Db;
+
+        public int HallRowID { get; set; }
     }
 }

@@ -50,8 +50,8 @@ namespace CinemaApp
         }
         private void toSeancesButton_Click(object sender, RoutedEventArgs e)
         {
-            createFilm();
-            seance.PageControl();
+            var film = createFilm();
+            seance.PageControl(film);
         }
 
         private void addFilm_Click(object sender, RoutedEventArgs e)
@@ -60,7 +60,7 @@ namespace CinemaApp
             string message = "Фильм успешно добавлен";
             MessageBox.Show(message);
         }
-        private void createFilm() 
+        private Film createFilm() 
         {
             Film film;
             List<Genre> tmpgenres = new List<Genre>();
@@ -83,6 +83,7 @@ namespace CinemaApp
                 DateFinish = (DateTime)FilmFinishDatePicker.SelectedDate
             };
             Film.Add(film);
+            return film;
         }
     }
 }

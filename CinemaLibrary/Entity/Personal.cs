@@ -14,11 +14,11 @@ namespace CinemaLibrary.Entity
         [Required]
         public string Password { get; set; }
         [Required]
-        public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
-        public string MiddleName { get; set; }//отчество
         [Required]
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }//отчество
+        public int RoleID { get; set; }
         public string FullName
         {
             get
@@ -28,12 +28,13 @@ namespace CinemaLibrary.Entity
                 return temp;
             }
         }
-        public virtual Role PersonalRole { get; set; }
+        public virtual Role Role { get; set; }
         private static ApplicationContext db = Context.Db;
 
         public static Personal GetPersonal(string Login, string Password)
         {
             return db.Personal.Where(g => g.Login == Login && g.Password == Password).FirstOrDefault();
         }
+        
     }
 }

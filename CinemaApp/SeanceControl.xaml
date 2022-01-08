@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:CinemaApp"
+      xmlns:entity="clr-namespace:CinemaLibrary.Entity;assembly=CinemaLibrary"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SeanceControl">
@@ -35,27 +36,25 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Сеансы" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="3"/>
-        <ComboBox x:Name="chooseFilmComboBox" Grid.Row="1" materialDesign:HintAssist.Hint="Выберите фильм" FontSize="20" Grid.ColumnSpan="2" Padding="0 20 0 0" Margin="30 0 0 0" LostMouseCapture="chooseFilmComboBox_LostMouseCapture">
-            
+        <ComboBox x:Name="chooseFilmComboBox" Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="Name"  materialDesign:HintAssist.Hint="Выберите фильм" FontSize="20" Grid.ColumnSpan="2" Padding="0 20 0 0" Margin="30 0 0 0" LostMouseCapture="chooseFilmComboBox_LostMouseCapture">
+            <ComboBox.DataContext>
+                <entity:Film/>
+            </ComboBox.DataContext>
         </ComboBox>
-        <ComboBox x:Name="chooseHallComboBox" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" materialDesign:HintAssist.Hint="Выберите зал" FontSize="20" Margin="0 0 120 0" Width="300" Padding="0 20 0 0" LostMouseCapture="ComboBox_LostMouseCapture" SelectionChanged="chooseHallComboBox_SelectionChanged">
-            <ComboBoxItem Content="Зал 1"/>
-            <ComboBoxItem Content="Зал 2"/>
-            <ComboBoxItem Content="Зал 3"/>
-            <ComboBoxItem Content="Зал 4"/>
-            <ComboBoxItem Content="Зал 5"/>
-            <ComboBoxItem Content="Выберите зал"/>
+        <ComboBox x:Name="chooseHallComboBox" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" DisplayMemberPath="HallName" materialDesign:HintAssist.Hint="Выберите зал" FontSize="20" Margin="0 0 120 0" Width="300" Padding="0 20 0 0" LostMouseCapture="ComboBox_LostMouseCapture" ItemsSource="{Binding}" SelectionChanged="chooseHallComboBox_SelectionChanged">
+            <ComboBox.DataContext>
+                <entity:CinemaHall/>
+            </ComboBox.DataContext>
         </ComboBox>
         <Viewbox Grid.ColumnSpan="2" Grid.Row="2" Height="500" Width="350" Stretch="Fill" StretchDirection="UpOnly" Grid.RowSpan="9" Margin="30 40 0 0">
-            <Calendar >
+            <Calendar x:Name="SeanceDateCalendar" >
 
             </Calendar>
 
         </Viewbox>
         <GroupBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" Grid.RowSpan="9" Margin="0 20 0 0" Header="Время" HorizontalAlignment="Center" MinWidth="600">
-            <StackPanel >
-                <CheckBox Content="Боевик" FontSize="30" ></CheckBox>
-                <CheckBox Content="Ужасы" FontSize="30" ></CheckBox>
+            <StackPanel x:Name="SeanceTime" >
+
             </StackPanel>
         </GroupBox>
         <Button x:Name="saveSeancesButton" Content="Сохранить" Grid.Column="5" Grid.Row="8" Grid.RowSpan="2" Grid.ColumnSpan="2" Background="Purple" Margin="120 50 0 0" HorizontalAlignment="Left" Width="200" Height="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="saveSeancesButton_Click"/>
