@@ -51,14 +51,14 @@ namespace CinemaApp
         private void toSeancesButton_Click(object sender, RoutedEventArgs e)
         {
             var film = createFilm();
+            if (film == null) return;
             seance.PageControl(film);
         }
 
         private void addFilm_Click(object sender, RoutedEventArgs e)
         {
             createFilm();
-            string message = "Фильм успешно добавлен";
-            MessageBox.Show(message);
+            
         }
         private Film createFilm() 
         {
@@ -71,6 +71,36 @@ namespace CinemaApp
             }
             string tmpstring = FilmRestrictionComboBox.Text;
 
+            if (FilmNameTextBox.Text == "" || FilmDurationTextBox.Text == "" || FilmStartDatePicker.Text == "" || FilmFinishDatePicker.Text == ""||tmpstring=="")
+            {
+                string messageAlarm = $"Заполните все поля";
+                MessageBox.Show(messageAlarm);
+                return null;
+            }
+            if ((DateTime)FilmStartDatePicker.SelectedDate < DateTime.Now.Date)
+                 {
+                string messageAlarm = $"Дата старта должна быть больше сегодняшней";
+                MessageBox.Show(messageAlarm);
+                return null;
+            }
+
+            if ((DateTime)FilmStartDatePicker.SelectedDate > (DateTime)FilmFinishDatePicker.SelectedDate)
+            {
+                string messageAlarm = $"Некорректные даты";
+                MessageBox.Show(messageAlarm);
+                return null;
+            }
+            try
+            {
+                int test = Convert.ToInt32(FilmDurationTextBox.Text);
+            }
+            catch (System.FormatException)
+            {
+                string messageAlarm = $"Введите корректную длительность фильма";
+                MessageBox.Show(messageAlarm);
+                return null;
+            }
+            
 
             film = new Film
             {
@@ -83,6 +113,8 @@ namespace CinemaApp
                 DateFinish = (DateTime)FilmFinishDatePicker.SelectedDate
             };
             Film.Add(film);
+            string message = "Фильм успешно добавлен";
+            MessageBox.Show(message);
             return film;
         }
     }

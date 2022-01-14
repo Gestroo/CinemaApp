@@ -73,6 +73,66 @@ namespace CinemaLibrary
                 RoleID = 2
             }
             ) ;
+
+            modelBuilder.Entity<Genre>().HasData(
+            
+                new Genre
+                {
+                ID =1,
+                Title = "Боевик"
+                },
+                new Genre
+                {
+                    ID = 2,
+                    Title = "Ужасы"
+                },
+                new Genre
+                {
+                    ID = 3,
+                    Title = "Мультфильм"
+                },
+                new Genre
+                {
+                    ID = 4,
+                    Title = "Комедия"
+                },
+                new Genre
+                {
+                    ID = 5,
+                    Title = "Фантастика"
+                },
+                new Genre
+                {
+                    ID = 6,
+                    Title = "Фэнтези"
+                },
+                new Genre
+                {
+                    ID = 7,
+                    Title = "Драма"
+                },
+                new Genre
+                {
+                    ID = 8,
+                    Title = "Мелодрама"
+                },
+                new Genre
+                {
+                    ID = 9,
+                    Title = "Вестерн"
+                },
+                new Genre
+                {
+                    ID = 10,
+                    Title = "Аниме"
+                },
+                new Genre
+                {
+                    ID = 11,
+                    Title = "Триллер"
+                }
+            );
+
              tmptimes = new List<Time>
             {
                 new Time

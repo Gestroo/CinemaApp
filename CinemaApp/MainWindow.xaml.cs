@@ -29,12 +29,19 @@ namespace CinemaApp
             WindowState = WindowState.Maximized;
             DgInsert();
             LoadGenres();
+            LoadHalls();
             LoadName(personal);
         }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DateP.SelectedDate == Convert.ToDateTime("29/11/21"))
             { }
+        }
+
+        public void LoadHalls() 
+        {
+            
+            hallsComboBox.ItemsSource = CinemaHall.GetHalls(); 
         }
         public void LoadName(Personal personal) 
         {

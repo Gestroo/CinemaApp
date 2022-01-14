@@ -36,12 +36,12 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Сеансы" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" Grid.Column="3"/>
-        <ComboBox x:Name="chooseFilmComboBox" Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="Name"  materialDesign:HintAssist.Hint="Выберите фильм" FontSize="20" Grid.ColumnSpan="2" Padding="0 20 0 0" Margin="30 0 0 0" LostMouseCapture="chooseFilmComboBox_LostMouseCapture">
+        <ComboBox x:Name="chooseFilmComboBox" Grid.Row="1" ItemsSource="{Binding}" DisplayMemberPath="Name"  materialDesign:HintAssist.Hint="Выберите фильм" FontSize="20" Grid.ColumnSpan="2" Padding="0 20 0 0" Margin="30 0 0 0" >
             <ComboBox.DataContext>
                 <entity:Film/>
             </ComboBox.DataContext>
         </ComboBox>
-        <ComboBox x:Name="chooseHallComboBox" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" DisplayMemberPath="HallName" materialDesign:HintAssist.Hint="Выберите зал" FontSize="20" Margin="0 0 120 0" Width="300" Padding="0 20 0 0" LostMouseCapture="ComboBox_LostMouseCapture" ItemsSource="{Binding}" SelectionChanged="chooseHallComboBox_SelectionChanged">
+        <ComboBox x:Name="chooseHallComboBox" Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="2" DisplayMemberPath="HallName" materialDesign:HintAssist.Hint="Выберите зал" FontSize="20" Margin="0 0 120 0" Width="300" Padding="0 20 0 0"  ItemsSource="{Binding}" SelectionChanged="chooseHallComboBox_SelectionChanged">
             <ComboBox.DataContext>
                 <entity:CinemaHall/>
             </ComboBox.DataContext>

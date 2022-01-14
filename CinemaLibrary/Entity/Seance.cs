@@ -21,6 +21,10 @@ namespace CinemaLibrary.Entity
         {
              { return db.Seance.ToList(); }
         }
+        public static Seance? GetSeance(DateTime dateTime,CinemaHall cinemaHall)
+        {
+            return db.Seance.Where(s => s.SeanceDate == dateTime).Where(s=>s.CinemaHall==cinemaHall).FirstOrDefault();
+        }
         public static void Add(Seance seance)
         {
             db.Seance.Add(seance);
