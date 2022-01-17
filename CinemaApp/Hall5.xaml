@@ -1,11 +1,11 @@
-﻿<Window x:Class="CinemaApp.Hall2"
+﻿<Window x:Class="CinemaApp.Hall5"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CinemaApp"
         mc:Ignorable="d"
-        Title="Зал 2" Height="1080" Width="1935" ResizeMode="NoResize" Icon="/cinema.ico">
+        Title="Зал 5" Height="1080" Width="1935" ResizeMode="NoResize" Icon="/cinema.ico">
     <Grid Background="Lavender">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -57,15 +57,16 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Label Grid.Row="8" Grid.Column="1" Background="Gray" Margin="20 0 20 0" Grid.ColumnSpan="5" VerticalAlignment="Center" Foreground="White" FontSize="22" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Content="Экран"/>
-            <Button x:Name="r1m1Button" Grid.Column="1" Grid.Row="6" Width="50" Height="50" Content="1" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r1m2Button" Grid.Column="2" Grid.Row="6" Width="50" Height="50" Content="2" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
-            <Button x:Name="r1m3Button" Grid.Column="2" Grid.Row="6" Width="50" Height="50" Content="3" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r1m4Button" Grid.Column="3" Grid.Row="6" Width="50" Height="50" Content="4" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
-            <Button x:Name="r1m5Button" Grid.Column="3" Grid.Row="6" Width="50" Height="50" Content="5" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r1m6Button" Grid.Column="4" Grid.Row="6" Width="50" Height="50" Content="6" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
-            <Button x:Name="r1m7Button" Grid.Column="4" Grid.Row="6" Width="50" Height="50" Content="7" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r1m8Button" Grid.Column="5" Grid.Row="6" Width="50" Height="50" Content="8" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
-           
+            <Button x:Name="r1m1Button" Grid.Column="1" Grid.Row="6" Width="50" Height="50" Content="1" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
+            <Button x:Name="r1m2Button" Grid.Column="1" Grid.Row="6" Width="50" Height="50" Content="2" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
+            <Button x:Name="r1m3Button" Grid.Column="2" Grid.Row="6" Width="50" Height="50" Content="3" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
+            <Button x:Name="r1m4Button" Grid.Column="2" Grid.Row="6" Width="50" Height="50" Content="4" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
+            <Button x:Name="r1m5Button" Grid.Column="3" Grid.Row="6" Width="50" Height="50" Content="5" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
+            <Button x:Name="r1m6Button" Grid.Column="3" Grid.Row="6" Width="50" Height="50" Content="6" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
+            <Button x:Name="r1m7Button" Grid.Column="4" Grid.Row="6" Width="50" Height="50" Content="7" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r1m8Button" Grid.Column="4" Grid.Row="6" Width="50" Height="50" Content="8" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
+            <Button x:Name="r1m9Button" Grid.Column="5" Grid.Row="6" Width="50" Height="50" Content="9" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r1m10Button" Grid.Column="5" Grid.Row="6" Width="50" Height="50" Content="10" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" HorizontalAlignment="Right" Click="SeatButton_Click"/>
 
             <Label Content="Ряд 1" FontSize="22" Grid.Column="6" Grid.Row="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
             <Label Content="Ряд 1" FontSize="22" Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
@@ -84,14 +85,16 @@
             <Label Content="Ряд 2" FontSize="22" Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
             <Label Content="Ряд 2" FontSize="22" Grid.Column="6" Grid.Row="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
 
-            <Button x:Name="r3m1Button" Grid.Column="1" Grid.Row="4" Width="50" Height="50" Content="1" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r3m2Button" Grid.Column="2" Grid.Row="4" Width="50" Height="50" Content="2" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
-            <Button x:Name="r3m3Button" Grid.Column="2" Grid.Row="4" Width="50" Height="50" Content="3" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r3m4Button" Grid.Column="3" Grid.Row="4" Width="50" Height="50" Content="4" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
-            <Button x:Name="r3m5Button" Grid.Column="3" Grid.Row="4" Width="50" Height="50" Content="5" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r3m6Button" Grid.Column="4" Grid.Row="4" Width="50" Height="50" Content="6" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
-            <Button x:Name="r3m7Button" Grid.Column="4" Grid.Row="4" Width="50" Height="50" Content="7" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r3m8Button" Grid.Column="5" Grid.Row="4" Width="50" Height="50" Content="8" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r3m1Button" Grid.Column="1" Grid.Row="4" Width="50" Height="50" Content="1" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r3m2Button" Grid.Column="1" Grid.Row="4" Width="50" Height="50" Content="2" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click"/>
+            <Button x:Name="r3m3Button" Grid.Column="2" Grid.Row="4" Width="50" Height="50" Content="3" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
+            <Button x:Name="r3m4Button" Grid.Column="2" Grid.Row="4" Width="50" Height="50" Content="4" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click"/>
+            <Button x:Name="r3m5Button" Grid.Column="3" Grid.Row="4" Width="50" Height="50" Content="5" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r3m6Button" Grid.Column="3" Grid.Row="4" Width="50" Height="50" Content="6" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click"/>
+            <Button x:Name="r3m7Button" Grid.Column="4" Grid.Row="4" Width="50" Height="50" Content="7" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r3m8Button" Grid.Column="4" Grid.Row="4" Width="50" Height="50" Content="8" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click"/>
+            <Button x:Name="r3m9Button" Grid.Column="5" Grid.Row="4" Width="50" Height="50" Content="9" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
+            <Button x:Name="r3m10Button" Grid.Column="5" Grid.Row="4" Width="50" Height="50" Content="10" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" HorizontalAlignment="Right" Click="SeatButton_Click"/>
 
             <Label Content="Ряд 3" FontSize="22" Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
             <Label Content="Ряд 3" FontSize="22" Grid.Column="6" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
@@ -110,14 +113,16 @@
             <Label Content="Ряд 4" FontSize="22" Grid.Column="6" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
             <Label Content="Ряд 4" FontSize="22" Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
 
-            <Button x:Name="r5m1Button" Grid.Column="1" Grid.Row="2" Width="50" Height="50" Content="1" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r5m2Button" Grid.Column="2" Grid.Row="2" Width="50" Height="50" Content="2" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
-            <Button x:Name="r5m3Button" Grid.Column="2" Grid.Row="2" Width="50" Height="50" Content="3" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r5m4Button" Grid.Column="3" Grid.Row="2" Width="50" Height="50" Content="4" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
-            <Button x:Name="r5m5Button" Grid.Column="3" Grid.Row="2" Width="50" Height="50" Content="5" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r5m6Button" Grid.Column="4" Grid.Row="2" Width="50" Height="50" Content="6" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
-            <Button x:Name="r5m7Button" Grid.Column="4" Grid.Row="2" Width="50" Height="50" Content="7" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click" />
-            <Button x:Name="r5m8Button" Grid.Column="5" Grid.Row="2" Width="50" Height="50" Content="8" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r5m1Button" Grid.Column="1" Grid.Row="2" Width="50" Height="50" Content="1" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r5m2Button" Grid.Column="1" Grid.Row="2" Width="50" Height="50" Content="2" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click"/>
+            <Button x:Name="r5m3Button" Grid.Column="2" Grid.Row="2" Width="50" Height="50" Content="3" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
+            <Button x:Name="r5m4Button" Grid.Column="2" Grid.Row="2" Width="50" Height="50" Content="4" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click"/>
+            <Button x:Name="r5m5Button" Grid.Column="3" Grid.Row="2" Width="50" Height="50" Content="5" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r5m6Button" Grid.Column="3" Grid.Row="2" Width="50" Height="50" Content="6" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click"/>
+            <Button x:Name="r5m7Button" Grid.Column="4" Grid.Row="2" Width="50" Height="50" Content="7" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click" />
+            <Button x:Name="r5m8Button" Grid.Column="4" Grid.Row="2" Width="50" Height="50" Content="8" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black"  HorizontalAlignment="Right" Click="SeatButton_Click"/>
+            <Button x:Name="r5m9Button" Grid.Column="5" Grid.Row="2" Width="50" Height="50" Content="9" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" Margin="20 0 0 0" HorizontalAlignment="Left" Click="SeatButton_Click"/>
+            <Button x:Name="r5m10Button" Grid.Column="5" Grid.Row="2" Width="50" Height="50" Content="10" Margin="0 0 20 0" Background="White" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="Black" Foreground="Black" HorizontalAlignment="Right" Click="SeatButton_Click"/>
 
             <Label Content="Ряд 5" FontSize="22" Grid.Column="6" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
             <Label Content="Ряд 5" FontSize="22" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
@@ -136,7 +141,7 @@
             <Label Content="Ряд 6" FontSize="22" Grid.Column="6" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
             <Label Content="Ряд 6" FontSize="22" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"></Label>
         </Grid>
-        <TextBlock  x:Name="SeanceInfoTextBlock" TextWrapping="Wrap" FontSize="20" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" TextAlignment="Center" FontWeight="Bold" >
+        <TextBlock x:Name="SeanceInfoTextBlock" TextWrapping="Wrap" FontSize="20" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" TextAlignment="Center" FontWeight="Bold" >
             Название фильма
             <LineBreak/>
             Дата,время
@@ -157,7 +162,5 @@
 
         <Label Grid.Row="11" Grid.Column="7" Background="IndianRed" Height="20" Width="20" HorizontalAlignment="Right" Margin="0 0 10 0"/>
         <Label Grid.Row="11" Grid.Column="8" Content="Куплено" FontSize="22" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>
-
-
     </Grid>
 </Window>

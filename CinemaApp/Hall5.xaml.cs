@@ -14,11 +14,11 @@ using CinemaLibrary.Entity;
 namespace CinemaApp
 {
     /// <summary>
-    /// Логика взаимодействия для Hall3.xaml
+    /// Логика взаимодействия для Hall5.xaml
     /// </summary>
-    public partial class Hall3 : Window
+    public partial class Hall5 : Window
     {
-        public Hall3(Seance seance, Personal personal)
+        public Hall5(Seance seance, Personal personal)
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
@@ -26,6 +26,7 @@ namespace CinemaApp
             _seance = seance;
             LoadData();
         }
+
         private Personal _personal;
         private Seance _seance;
         private Button lastCheckedButton;

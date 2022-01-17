@@ -16,6 +16,18 @@ namespace CinemaLibrary.Entity
         public virtual Film Film { get; set; }
         [Required]
         public DateTime SeanceDate { get; set; }
+
+        public virtual List<HallSeat> BoughtSeats { get; set; }
+        public virtual List<HallSeat> ReservedSeats { get; set; }
+
+        public string Date { get { return SeanceDate.ToString("d"); } }
+        public string Time { get { return SeanceDate.ToString("t"); } }
+
+        public Seance() {
+            BoughtSeats = new List<HallSeat>();
+            ReservedSeats = new List<HallSeat>();
+        }
+
         private static ApplicationContext db = Context.Db;
         public static List<Seance> GetSeances() 
         {
@@ -28,6 +40,10 @@ namespace CinemaLibrary.Entity
         public static void Add(Seance seance)
         {
             db.Seance.Add(seance);
+            db.SaveChanges();
+        }
+        public void Save() 
+        {
             db.SaveChanges();
         }
     }

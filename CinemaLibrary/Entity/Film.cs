@@ -23,6 +23,9 @@ namespace CinemaLibrary.Entity
         [Required]
         public DateTime DateFinish { get; set; }
 
+        public string Genres { get { return GetGenresInOneRow(); } }
+        public string ogranPlus { get { return $"{Restriction}+"; } }
+
         public Film() { Genre = new List<Genre>(); }
 
         private static ApplicationContext db = Context.Db;
@@ -36,6 +39,20 @@ namespace CinemaLibrary.Entity
         {
             db.Film.Add(film);
             db.SaveChanges();
+        }
+        public static Film GetFilmByID(int id) 
+        {
+            return db.Film.Where(f => f.ID == id).FirstOrDefault();
+        }
+        public string GetGenresInOneRow() 
+        {
+           
+            string tmpstring = "";
+            foreach (var g in Genre)
+                tmpstring += g.Title + ", ";
+            if (tmpstring.Length != 0)
+            tmpstring = tmpstring.Substring(0, tmpstring.Length - 2);
+            return tmpstring;
         }
     }
 }

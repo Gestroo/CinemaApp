@@ -27,17 +27,79 @@ namespace CinemaApp
 
             InitializeComponent();
             WindowState = WindowState.Maximized;
-            DgInsert();
+             _personal = personal;
+            UpdateData();
             LoadGenres();
             LoadHalls();
             LoadName(personal);
         }
+        private Personal _personal;
+        public void UpdateData() 
+        {
+            List<Seance> seances = Seance.GetSeances();
+            if (ActiveSeancesCheckBox.IsChecked == true)
+            {
+                seances = seances.Where(s =>s.SeanceDate >= DateTime.Now).ToList();      
+            }
+            if (PastSeancesCheckBox.IsChecked == true)
+            {
+                seances = seances.Where(s => s.SeanceDate < DateTime.Now).ToList();
+            }
+            if (SearchFilmByTitleTextBox.Text != "")
+            {
+                seances = seances.Where(s => s.Film.Name.ToLower().Contains(SearchFilmByTitleTextBox.Text.ToLower())).ToList();
+            }
+            if (SearchDatePicker.Text != "") 
+            {
+                seances = seances.Where(s => s.Date == SearchDatePicker.Text).ToList();
+            }
+            if (genresComboBox.SelectedItem != null) 
+            {
+            seances = seances.Where(s=>s.Film.Genres.ToLower().Contains(genresComboBox.SelectedItem.ToString().ToLower())).ToList();
+            }
+            if (RestrictionComboBox.SelectedItem != null)
+            {
+                seances = seances.Where(s => s.Film.Restriction.ToString() == RestrictionComboBox.Text).ToList();
+            }
+            if (hallsComboBox.SelectedItem != null)
+            {
+                seances = seances.Where(s => s.CinemaHall.HallName== hallsComboBox.Text).ToList();
+            }
+            SeancesDataGrid.ItemsSource = seances;
+        }
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DateP.SelectedDate == Convert.ToDateTime("29/11/21"))
-            { }
+            UpdateData();
         }
 
+        private void Row_DoubleClick(object sender,MouseButtonEventArgs e)
+        {
+            var personal = _personal as Personal;
+            var seance = (sender as DataGridRow).Item as Seance;
+            if (seance == null) return;
+            switch (seance.CinemaHall.HallNumber) 
+            
+            {
+                case 1:
+                    var hall1 = new Hall1(seance, _personal);
+                    hall1.Show();
+                    break;
+                case 2: var hall2 = new Hall2(seance, _personal);
+                    hall2.Show();
+                    break;
+                case 3: var hall3 = new Hall3(seance, _personal);
+                    hall3.Show();
+                    break;
+                case 4: var hall4 = new Hall4(seance, _personal);
+                    hall4.Show();
+                    break;
+                case 5: var hall5 = new Hall5(seance, _personal);
+                    hall5.Show();
+                    break;
+            }
+
+                
+        }
         public void LoadHalls() 
         {
             
@@ -48,11 +110,7 @@ namespace CinemaApp
             NameTextBlock.FontSize = 20;
             NameTextBlock.Text = personal.FullName;
         }
-        public void DgInsert()
-        {
-            dgSeances.ItemsSource = Seance.GetSeances();
-        }
-
+      
         public void LoadGenres() 
         {
             var genres = Genre.GetGenres();
@@ -73,10 +131,59 @@ namespace CinemaApp
             }
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchFilmTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var textbox = sender as TextBox;
+            UpdateData();
 
         }
+
+        private void genresComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateData();
+        }
+
+      
+        private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchFilmByTitleTextBox.Clear();
+            SearchDatePicker.Text ="";
+            genresComboBox.Text = null;
+            RestrictionComboBox.Text = null;
+            hallsComboBox.Text = null;
+            UpdateData();
+        }
+
+        private void hallsComboBox_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+            UpdateData();
+
+        }
+
+        private void RestrictionComboBox_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+            UpdateData();
+        }
+
+        
+        private void ActiveSeancesCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            PastSeancesCheckBox.IsChecked = false;
+            UpdateData();
+        }
+
+        private void PastSeancesCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            ActiveSeancesCheckBox.IsChecked = false;
+            UpdateData();
+        }
+
+
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            UpdateData();
+        }
+
+
     }
 }

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CinemaLibrary.Entity;
 
 namespace CinemaApp
 {
@@ -17,14 +18,23 @@ namespace CinemaApp
     /// </summary>
     public partial class Hall2 : Window
     {
-        public Hall2()
+        public Hall2(Seance seance, Personal personal)
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
+            _personal = personal;
+            _seance = seance;
+            LoadData();
         }
-
+        private Personal _personal;
+        private Seance _seance;
         private Button lastCheckedButton;
         private Brush lastBrushes;
+
+        public void LoadData()
+        {
+            SeanceInfoTextBlock.Text = $"{_seance.Film.Name}, {_seance.Date} {_seance.Time}";
+        }
         private void SeatButton_Click(object sender, RoutedEventArgs e)
         {
             if (lastCheckedButton != null)
@@ -81,6 +91,21 @@ namespace CinemaApp
             {
                 string message = "Нельзя забронировать купленное место";
                 MessageBox.Show(message);
+            }
+        }
+
+        private void TicketPrototypeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (lastCheckedButton != null)
+            {
+                var name = lastCheckedButton.Name;
+                int number;
+                int row = int.Parse(name.Substring(1, 1));
+                if (name.Length == 11)
+                    number = int.Parse(name.Substring(3, 2));
+                else number = int.Parse(name.Substring(3, 1));
+                TicketPrototype ticketPrototype = new TicketPrototype(_personal, _seance, row, number);
+                ticketPrototype.Show();
             }
         }
     }

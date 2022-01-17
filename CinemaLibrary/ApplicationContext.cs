@@ -15,14 +15,13 @@ namespace CinemaLibrary
             Context.AddDb(this);
         }
         public DbSet<Booking> Booking { get; set; }
-        public DbSet<CashBox> CashBox { get; set; }
         public DbSet<CinemaHall> CinemaHall { get; set; }
         public DbSet<Client> Client { get; set; }
         public DbSet<Film> Film { get; set; }
         public DbSet<Genre> Genre { get; set; }
         public DbSet<HallRow> HallRow { get; set; }
+        public DbSet<HallSeat> HallSeat { get; set; }
         public DbSet<Personal> Personal { get; set; }
-        public DbSet<PriceFormer> PriceFormer { get; set; }
         public DbSet<Reservation> Reservation { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<Seance> Seance { get; set; }
@@ -39,6 +38,8 @@ namespace CinemaLibrary
         {
             modelBuilder.Entity<Personal>().Ignore(p => p.FullName);
             modelBuilder.Entity<Client>().Ignore(c => c.FullName);
+            modelBuilder.Entity<Seance>().Ignore(s => s.Date).Ignore(s => s.Time);
+            modelBuilder.Entity<Film>().Ignore(f => f.Genres).Ignore(f=>f.ogranPlus);
             modelBuilder.Entity<Client>().HasIndex(c => c.Email).IsUnique();
             modelBuilder.Entity<CinemaHall>().HasMany(c => c.SeanceTimes).WithMany(s=>s.Halls).UsingEntity(j=>j.ToTable("CinemaHallTime"));
             modelBuilder.Entity<Role>().HasData(new Role

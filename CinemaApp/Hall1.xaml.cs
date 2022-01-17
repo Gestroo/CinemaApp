@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CinemaLibrary.Entity;
 
 namespace CinemaApp
 {
@@ -17,13 +18,25 @@ namespace CinemaApp
     /// </summary>
     public partial class Hall1 : Window
     {
-        public Hall1()
+        public Hall1(Seance seance,Personal personal)
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
+            _personal = personal;
+            _seance = seance;
+            LoadData();
+
         }
+        private Personal _personal;
+        private Seance _seance;
         private Button lastCheckedButton;
         private Brush lastBrushes;
+
+
+        public void LoadData() 
+        {
+            SeanceInfoTextBlock.Text = $"{_seance.Film.Name}, {_seance.Date} {_seance.Time}";
+        }
         private void SeatButton_Click(object sender, RoutedEventArgs e)
         {
             if (lastCheckedButton !=null)
@@ -64,6 +77,21 @@ namespace CinemaApp
         {
             if (lastCheckedButton != null)
             {
+                var name = lastCheckedButton.Name;
+                int number;
+               int row = int.Parse( name.Substring(1,1));
+                if (name.Length == 11)
+                 number = int.Parse(name.Substring(3, 2));
+                else number = int.Parse(name.Substring(3, 1));
+
+                _seance.BoughtSeats.Add(HallSeat.FindSeat(row, number));
+                _seance.Save();
+                Ticket ticket = new Ticket 
+                {
+                
+                };
+
+                
                 lastCheckedButton.Background = Brushes.IndianRed;
                 lastBrushes = lastCheckedButton.Background;
             }
@@ -73,6 +101,21 @@ namespace CinemaApp
         {
             if (lastCheckedButton != null && lastBrushes != Brushes.IndianRed)
             {
+                var name = lastCheckedButton.Name;
+                int number;
+                int row = int.Parse(name.Substring(1, 1));
+                if (name.Length == 11)
+                    number = int.Parse(name.Substring(3, 2));
+                else number = int.Parse(name.Substring(3, 1));
+                if (_seance.ReservedSeats.Contains(HallSeat.FindSeat(row, number)))
+                    {
+                    string messageAlarm = $"Нельзя забронировать купленное место";
+                    MessageBox.Show(messageAlarm);
+                    return;
+                }
+
+                _seance.ReservedSeats.Add(HallSeat.FindSeat(row, number));
+                _seance.Save();
                 lastCheckedButton.Background = Brushes.Aquamarine;
                 lastBrushes = lastCheckedButton.Background;
             }
@@ -80,6 +123,21 @@ namespace CinemaApp
             {
                 string message = "Нельзя забронировать купленное место";
                 MessageBox.Show(message);
+            }
+        }
+
+        private void TicketPrototypeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (lastCheckedButton != null)
+            {
+                var name = lastCheckedButton.Name;
+            int number;
+            int row = int.Parse(name.Substring(1, 1));
+            if (name.Length == 11)
+                number = int.Parse(name.Substring(3, 2));
+            else number = int.Parse(name.Substring(3, 1));
+                TicketPrototype ticketPrototype = new TicketPrototype(_personal,_seance,row,number);
+                ticketPrototype.Show();
             }
         }
     }

@@ -8,6 +8,9 @@
     <Compile Update="Hall1.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Hall5.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="NewSeance.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -15,6 +18,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="SeanceCreator.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TicketPrototype.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -25,6 +31,9 @@
     <Page Update="Hall1.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Hall5.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="NewSeance.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -32,6 +41,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SeanceCreator.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TicketPrototype.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

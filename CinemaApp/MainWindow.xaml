@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CinemaApp"
         xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        xmlns:entity="clr-namespace:CinemaLibrary.Entity;assembly=CinemaLibrary"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Кинотеатр Премьер" Height="1080" Width="1935" Icon="/cinema.ico" MinHeight="1080" MinWidth="1935"   MaxHeight="1080" MaxWidth="1935" Cursor="IBeam" WindowState="Maximized" ResizeMode="NoResize">
@@ -52,7 +53,7 @@
                 </Storyboard>
             </Grid.Resources>
             <!--Get datetime from DataContext-->
-            <TextBlock FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray" FontWeight="Bold" Text="{Binding RelativeSource={RelativeSource Self},Path=DataContext.Now}"
+            <TextBlock FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontWeight="Bold" Text="{Binding RelativeSource={RelativeSource Self},Path=DataContext.Now}"
                 DataContext="{StaticResource DateTime}">
                 <TextBlock.Triggers>
                     <EventTrigger RoutedEvent="Loaded">
@@ -61,26 +62,52 @@
                 </TextBlock.Triggers>
             </TextBlock>
         </Grid>
-        <DatePicker
-            Grid.Column="0" Name="DateP" Margin="10 0 10 2.5 " FontSize="18" MaxHeight="40"
+        <DatePicker 
+            Grid.Column="1" Name="SearchDatePicker" Margin="10 0 10 2.5 " FontSize="18" MaxHeight="40"
             SelectedDateChanged="DatePicker_SelectedDateChanged" 
             materialDesign:HintAssist.Hint="Выберите дату">
 		</DatePicker>
-		<DataGrid 
+        <DataGrid x:Name="SeancesDataGrid" IsReadOnly="True" CanUserResizeColumns="False" CanUserReorderColumns="False" SelectionMode="Single" SelectionUnit="FullRow" Cursor="Arrow"
             Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="13"
-            Margin="0 8 0 10" x:Name="dgSeances"
+            Margin="0 8 0 10" 
             FontSize="18" AutoGenerateColumns="False" ItemsSource="{Binding}" >
+
+            <DataGrid.DataContext>
+                <entity:Seance>
+                </entity:Seance>
+            </DataGrid.DataContext>
+
+                <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Style.Triggers>
+                        <Trigger Property="DataGridCell.IsSelected" Value="True">
+                            <Setter Property="Background" Value="#ffdadada" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Фильм" Width="*" Binding="{Binding Path=DateTime }" />
-                <DataGridTextColumn Header="Дата" Width="*" Binding="{Binding Path=RouteName }" />
-                <DataGridTextColumn Header="Время" Width="*" Binding="{Binding Path=WayToTravel }" />
-                <DataGridTextColumn Header="Жанр" Width="*" Binding="{Binding Path=CompanyName }" />
-                <DataGridTextColumn Header="Ограничение" Width="*" Binding="{Binding Path=PeopleAmount }" />
-                <DataGridTextColumn Header="Зал" Width="*" Binding="{Binding Path=Status }" />
+                <DataGridTextColumn Header="Фильм" Width="*" Binding="{Binding Path=Film.Name }" />
+                <DataGridTextColumn Header="Дата" Width="120" Binding="{Binding Path=Date }" />
+                <DataGridTextColumn Header="Время" Width="100" Binding="{Binding Path=Time }" />
+                <DataGridTextColumn Header="Жанр" Width="0.5*" Binding="{Binding Path=Film.Genres }" />
+                <DataGridTextColumn Header="Ограничение" Width="100" Binding="{Binding Path=Film.ogranPlus }" />
+                <DataGridTextColumn Header="Зал" Width="100" Binding="{Binding Path=CinemaHall.HallName }" />
             </DataGrid.Columns>
-            
+
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Height" Value="34"/>
+                    <Setter Property="Margin" Value="12 12 0 0"/>
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+
         </DataGrid>
-		<TextBox Grid.Row="0"  Grid.Column="1" Margin="10 0 5 9.5 " MaxHeight="40" Padding="0 5 0 0" materialDesign:HintAssist.Hint="Поиск фильма" FontSize="18" TextChanged="TextBox_TextChanged"></TextBox>
+		<TextBox  x:Name="SearchFilmByTitleTextBox" Grid.Row="0"  Grid.Column="0" Margin="10 0 5 9.5 " MaxHeight="40" Padding="0 0 0 0" materialDesign:HintAssist.Hint="Поиск фильма" FontSize="18" TextChanged="SearchFilmTextBox_TextChanged"></TextBox>
 
         <TextBlock x:Name="NameTextBlock" HorizontalAlignment="Right" Grid.Column="5" Grid.Row="0" VerticalAlignment="Center">
            
@@ -92,8 +119,7 @@
                 Пользователя
             </TextBlock>
         </Button>
-        <ComboBox Grid.Column="3" Padding="5 5 0 0" MaxHeight="40" materialDesign:HintAssist.Hint="Выберите категорию" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray">
-            <ComboBoxItem Content="Выберите категорию"/>
+        <ComboBox x:Name="RestrictionComboBox" Grid.Column="3" Padding="5 5 0 0" MaxHeight="40" materialDesign:HintAssist.Hint="Выберите категорию" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray"  LostMouseCapture="RestrictionComboBox_LostMouseCapture">
             <ComboBoxItem Content="0+"/>
             <ComboBoxItem Content="6+"/>
             <ComboBoxItem Content="12+"/>
@@ -101,10 +127,18 @@
             <ComboBoxItem Content="18+"/>
         </ComboBox>
 
-        <ComboBox x:Name="hallsComboBox" DisplayMemberPath="HallName" ItemsSource="{Binding}" Grid.Column="4" Padding="5 5 0 0" MaxHeight="40" materialDesign:HintAssist.Hint="Выберите зал" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray">
+        <ComboBox x:Name="hallsComboBox" DisplayMemberPath="HallName" ItemsSource="{Binding}" Grid.Column="4" Padding="5 5 0 0" MaxHeight="40" materialDesign:HintAssist.Hint="Выберите зал" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray"  LostMouseCapture="hallsComboBox_LostMouseCapture">
         </ComboBox>
-        <ComboBox x:Name="genresComboBox" Grid.Column="2" Padding="5 5 0 0" MaxHeight ="40" materialDesign:HintAssist.Hint="Выберите жанр" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray"> 
+        <ComboBox x:Name="genresComboBox" Grid.Column="2" Padding="5 5 0 0" MaxHeight ="40" materialDesign:HintAssist.Hint="Выберите жанр" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray" SelectionChanged="genresComboBox_SelectionChanged"> 
             
         </ComboBox>
+        <StackPanel  Grid.Row="2" Grid.Column="6" Grid.RowSpan="2" Height="70" Margin="15" >
+            <CheckBox  x:Name="ActiveSeancesCheckBox" Content="Активные сеансы" FontSize="22" Checked="ActiveSeancesCheckBox_Checked" Cursor="Arrow" Unchecked="CheckBox_Unchecked"/>
+            <CheckBox x:Name="PastSeancesCheckBox" Content="Прошедшие сеансы" FontSize="22" Checked="PastSeancesCheckBox_Checked" Cursor="Arrow" Unchecked="CheckBox_Unchecked"/>
+        </StackPanel>
+            
+            <Button Height="50" Width="230" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" Grid.Column="6" Grid.Row="4" Click="ClearFiltersButton_Click">
+            Очистить фильтры
+        </Button>
     </Grid>
 </Window>

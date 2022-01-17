@@ -17,5 +17,10 @@ namespace CinemaLibrary.Entity
         private static ApplicationContext db = Context.Db;
 
         public int HallRowID { get; set; }
+
+        public static HallSeat FindSeat(int row, int number) 
+        {
+            return db.HallSeat.FirstOrDefault(h => h.HallRow.RowNumber == row && h.SeatNumber == number);
+        }
     }
 }
