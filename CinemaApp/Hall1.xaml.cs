@@ -18,20 +18,56 @@ namespace CinemaApp
     /// </summary>
     public partial class Hall1 : Window
     {
-        public Hall1(Seance seance,Personal personal)
+        public Hall1(Seance seance, Personal personal)
         {
             InitializeComponent();
             WindowState = WindowState.Maximized;
             _personal = personal;
             _seance = seance;
             LoadData();
-
+            LoadSeatsInfo();
+            notify += GetBookingEvent;
         }
+        public delegate void GetBooking(Booking booking);
+        public event GetBooking notify;
+       private Booking booking { get; set; }
         private Personal _personal;
         private Seance _seance;
         private Button lastCheckedButton;
         private Brush lastBrushes;
+        private List<Button> checkedButtons = new List<Button>();
 
+        private void LoadSeatsInfo() 
+        {
+            foreach (var s in SeatsGrid.Children)
+            {
+                if (!(s is Button)) continue;
+                var tmp = s as Button;
+                var name = tmp.Name;
+                int number;
+                int row = int.Parse(name.Substring(1, 1));
+                if (name.Length == 11)
+                    number = int.Parse(name.Substring(3, 2));
+                else number = int.Parse(name.Substring(3, 1));
+
+                if (_seance.BoughtSeats.Contains(HallSeat.FindSeat(row, number)))
+                {
+                    tmp.Background = Brushes.IndianRed;
+                }
+                if (_seance.ReservedSeats.Contains(HallSeat.FindSeat(row, number)))
+                {
+                    tmp.Background = Brushes.Aquamarine;
+                }
+
+            }
+
+
+        }
+
+        private void GetBookingEvent(Booking booking) 
+        {
+            this.booking = booking;
+        }
 
         public void LoadData() 
         {
@@ -39,24 +75,24 @@ namespace CinemaApp
         }
         private void SeatButton_Click(object sender, RoutedEventArgs e)
         {
-            if (lastCheckedButton !=null)
-                ClearLastSeat(lastCheckedButton);
+            /*     if (lastCheckedButton !=null)
+                     ClearLastSeat(lastCheckedButton);
+                 var tmp_button = (Button)sender;
+                     lastBrushes = tmp_button.Background;
+                     tmp_button.Background = Brushes.Gray;
+                 lastCheckedButton = tmp_button;*/
             var tmp_button = (Button)sender;
-                lastBrushes = tmp_button.Background;
+            if (checkedButtons.Contains(tmp_button))
+            {
+                checkedButtons.Remove(tmp_button);
+                tmp_button.Background = Brushes.White;
+            }
+            else 
+            {
+                checkedButtons.Add(tmp_button);
                 tmp_button.Background = Brushes.Gray;
-            lastCheckedButton = tmp_button;
-            
-        }
-
-        private void ClearLastSeat(Button btn) 
-        {
-            if (lastBrushes == Brushes.IndianRed)
-                btn.Background = Brushes.IndianRed;
-            if (lastBrushes == Brushes.Aquamarine)
-                btn.Background = Brushes.Aquamarine;
-            if (lastCheckedButton.Background != Brushes.IndianRed && lastCheckedButton.Background != Brushes.Aquamarine)
-                btn.Background = Brushes.White;
- 
+            }
+                
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
@@ -75,40 +111,71 @@ namespace CinemaApp
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (lastCheckedButton != null)
+            string message = null;
             {
-                var name = lastCheckedButton.Name;
-                int number;
-               int row = int.Parse( name.Substring(1,1));
-                if (name.Length == 11)
-                 number = int.Parse(name.Substring(3, 2));
-                else number = int.Parse(name.Substring(3, 1));
+                foreach (var b in checkedButtons)
 
-                _seance.BoughtSeats.Add(HallSeat.FindSeat(row, number));
-                _seance.Save();
-                Ticket ticket = new Ticket 
                 {
-                
-                };
+                    var tmp_button = b as Button;
+                    var name = b.Name;
+                    int number;
+                    int row = int.Parse(name.Substring(1, 1));
+                    if (name.Length == 11)
+                        number = int.Parse(name.Substring(3, 2));
+                    else number = int.Parse(name.Substring(3, 1));
 
-                
-                lastCheckedButton.Background = Brushes.IndianRed;
-                lastBrushes = lastCheckedButton.Background;
+                    if (_seance.ReservedSeats.Contains(HallSeat.FindSeat(row, number)))
+                    {
+
+                        message += $"Ряд : {row} Место : {number} Бронь : ";
+               
+                    }
+                    MessageBoxResult result = MessageBox.Show(
+         "Сохранить изменения?",
+         "Сохранить",
+         MessageBoxButton.OKCancel);
+                    if (result == MessageBoxResult.OK)
+                    {
+
+                        _seance.BoughtSeats.Add(HallSeat.FindSeat(row, number));
+                        _seance.Save();
+
+                        if (Ticket.FindTicket(_seance, row, number) == null)
+                        {
+                            Ticket ticket = new Ticket
+                            {
+                                Seance = _seance,
+                                Row = HallRow.GetHallRowByNumber(row),
+                                Seat = HallSeat.FindSeat(row, number),
+                                TotalPrice = 250,
+                                Personal = _personal
+                            };
+                            Ticket.Add(ticket);
+                        }
+
+                        b.Background = Brushes.IndianRed;
+                    }
+                    checkedButtons.Clear();
+                }
             }
-        }
 
+        }
         private void BookingButton_Click(object sender, RoutedEventArgs e)
         {
-            if (lastCheckedButton != null && lastBrushes != Brushes.IndianRed)
+
+
+            foreach (var b in checkedButtons)
+
             {
-                var name = lastCheckedButton.Name;
+                var name = b.Name;
                 int number;
                 int row = int.Parse(name.Substring(1, 1));
                 if (name.Length == 11)
                     number = int.Parse(name.Substring(3, 2));
                 else number = int.Parse(name.Substring(3, 1));
-                if (_seance.ReservedSeats.Contains(HallSeat.FindSeat(row, number)))
-                    {
+
+                if (_seance.BoughtSeats.Contains(HallSeat.FindSeat(row, number)))
+                {
                     string messageAlarm = $"Нельзя забронировать купленное место";
                     MessageBox.Show(messageAlarm);
                     return;
@@ -116,14 +183,44 @@ namespace CinemaApp
 
                 _seance.ReservedSeats.Add(HallSeat.FindSeat(row, number));
                 _seance.Save();
-                lastCheckedButton.Background = Brushes.Aquamarine;
-                lastBrushes = lastCheckedButton.Background;
+                b.Background = Brushes.Aquamarine;
+
+
             }
-            else if (lastBrushes == Brushes.IndianRed)
+            var reservation = new AddReservation(_seance, notify);
+            reservation.ShowDialog();
+
+            foreach (var b in checkedButtons)
+
             {
-                string message = "Нельзя забронировать купленное место";
-                MessageBox.Show(message);
+                var tmp_button = b as Button;
+                var name = b.Name;
+                int number;
+                int row = int.Parse(name.Substring(1, 1));
+                if (name.Length == 11)
+                    number = int.Parse(name.Substring(3, 2));
+                else number = int.Parse(name.Substring(3, 1));
+
+                Ticket ticket = new Ticket
+                {
+                    Seance = _seance,
+                    Row = HallRow.GetHallRowByNumber(row),
+                    Seat = HallSeat.FindSeat(row, number),
+                    TotalPrice = 250,
+                    Personal = _personal
+                };
+                Ticket.Add(ticket);
+
+                Reservation _reservation = new Reservation
+                {
+                    Ticket = ticket,
+                };
+                Reservation.Add(_reservation);
+
+                booking.Reservations.Add(_reservation);
+
             }
+            booking.Save();
         }
 
         private void TicketPrototypeButton_Click(object sender, RoutedEventArgs e)
@@ -138,7 +235,7 @@ namespace CinemaApp
             else number = int.Parse(name.Substring(3, 1));
                 TicketPrototype ticketPrototype = new TicketPrototype(_personal,_seance,row,number);
                 ticketPrototype.Show();
-            }
+            }      
         }
     }
 }

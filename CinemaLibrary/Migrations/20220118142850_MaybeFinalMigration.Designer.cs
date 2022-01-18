@@ -3,15 +3,17 @@ using System;
 using CinemaLibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CinemaLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220118142850_MaybeFinalMigration")]
+    partial class MaybeFinalMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,7 +43,7 @@ namespace CinemaLibrary.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("ClientID")
+                    b.Property<int?>("ClientID")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DateTime")
@@ -2577,10 +2579,8 @@ namespace CinemaLibrary.Migrations
             modelBuilder.Entity("CinemaLibrary.Entity.Booking", b =>
                 {
                     b.HasOne("CinemaLibrary.Entity.Client", "Client")
-                        .WithMany("Bookings")
-                        .HasForeignKey("ClientID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("ClientID");
 
                     b.Navigation("Client");
                 });
@@ -2728,11 +2728,6 @@ namespace CinemaLibrary.Migrations
             modelBuilder.Entity("CinemaLibrary.Entity.CinemaHall", b =>
                 {
                     b.Navigation("Rows");
-                });
-
-            modelBuilder.Entity("CinemaLibrary.Entity.Client", b =>
-                {
-                    b.Navigation("Bookings");
                 });
 
             modelBuilder.Entity("CinemaLibrary.Entity.HallRow", b =>

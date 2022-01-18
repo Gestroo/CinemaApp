@@ -39,7 +39,7 @@ namespace CinemaApp
         {
             FilmInfoTextBlock.Text = $"{_seance.Film.Name} {_seance.Date} {_seance.Time}";
             HallInfoTextBlock.Text = $"{_seance.CinemaHall.HallName} Ряд: {_row} Место: {_number} ";
-            CashierInfoTextBlock.Text = $"Кассир: {_personal.FullName} ";
+            CashierInfoTextBlock.Text = _personal.GetFullName();
         }
 
     }

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CinemaLibrary.Entity
 {
-    public class Genre
+    public class Genre //Жанр
     {
         public int ID { get; set; }
         [Required]

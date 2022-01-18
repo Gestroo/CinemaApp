@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CinemaLibrary.Entity
 {
-    public class CinemaHall
+    public class CinemaHall //Кинозал
     {
         [Key]
         public int HallNumber { get; set; }
@@ -21,6 +21,7 @@ namespace CinemaLibrary.Entity
 
         public CinemaHall() 
         {
+
             Rows = new List<HallRow>();
             SeanceTimes = new List<Time>();
         }

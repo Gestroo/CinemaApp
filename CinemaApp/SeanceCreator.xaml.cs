@@ -39,7 +39,7 @@ namespace CinemaApp
         public void LoadName(Personal personal)
         {
             NameTextBlock.FontSize = 20;
-            NameTextBlock.Text = personal.FullName;
+            NameTextBlock.Text = personal.GetFIO();
         }
         public void PageControl() 
         {

@@ -1,0 +1,50 @@
+﻿<Window x:Class="CinemaApp.AddReservation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CinemaApp"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Кинотеатр Премьер" Height="600" Width="400" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="1" Grid.ColumnSpan="3" FontSize="18" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center">
+            Заполните поле клиента
+        </TextBlock>
+            <TextBox x:Name="LastNameTextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Black" FontSize="18" Padding="5 5 0 0" Height="40" materialDesign:HintAssist.Hint="Фамилия" BorderThickness="2" Cursor="IBeam">
+            
+        </TextBox>
+        <TextBox x:Name="FirstNameTextBox" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Black" FontSize="18" Padding="5 5 0 0" Height="40" materialDesign:HintAssist.Hint="Имя" BorderThickness="2" Cursor="IBeam">
+
+        </TextBox>
+        <TextBox x:Name="MiddleNameTextBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Black" FontSize="18" Padding="5 5 0 0" Height="40" materialDesign:HintAssist.Hint="Отчество" BorderThickness="2" Cursor="IBeam">
+
+        </TextBox>
+        <TextBox x:Name="PhoneNumberTextBox" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Black" FontSize="18" Padding="5 5 0 0" Height="40" materialDesign:HintAssist.Hint="Телефон" BorderThickness="2" Cursor="IBeam">
+
+        </TextBox>
+        <DatePicker x:Name="BirthDatePicker" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" materialDesign:HintAssist.Hint="Дата рождения" BorderBrush="Black" BorderThickness="2" FontSize="18">
+            
+        </DatePicker>
+        <Button x:Name="SaveButton" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="3" Content="Сохранить" Width="150" Click="SaveButton_Click">
+            
+        </Button>
+    </Grid>
+</Window>

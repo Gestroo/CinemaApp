@@ -13,10 +13,16 @@ namespace CinemaLibrary.Entity
         [Required]
         public DateTime DateTime { get; set; }
         public virtual List<Reservation> Reservations { get; set; }
-
+       
+        public int ClientID { get; set; }
+        private static ApplicationContext db = Context.Db;
 
         public Booking() { Reservations = new List<Reservation>(); }
-    }
 
+        public void Save()
+        {
+            db.SaveChanges();
+        }
+    }
     
 }

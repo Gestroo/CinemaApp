@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="AddReservation.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Authorization.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -25,6 +28,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AddReservation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Authorization.xaml">
       <SubType>Designer</SubType>
     </Page>

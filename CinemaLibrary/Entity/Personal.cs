@@ -6,28 +6,15 @@ using System.Linq;
 
 namespace CinemaLibrary.Entity
 {
-    public class Personal
+    public class Personal : Human // Персонал
     {
         public int ID { get; set; }
         [Required]
         public string Login { get; set; }
         [Required]
         public string Password { get; set; }
-        [Required]
-        public string LastName { get; set; }
-        [Required]
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }//отчество
         public int RoleID { get; set; }
-        public string FullName
-        {
-            get
-            {
-                var temp = $"{LastName} {FirstName.Substring(0, 1)}.";
-                if (MiddleName != null) temp += $" {MiddleName.Substring(0, 1)}.";
-                return temp;
-            }
-        }
+       
         public virtual Role Role { get; set; }
         private static ApplicationContext db = Context.Db;
 
@@ -35,6 +22,13 @@ namespace CinemaLibrary.Entity
         {
             return db.Personal.Where(g => g.Login == Login && g.Password == Password).FirstOrDefault();
         }
-        
+        public override string GetFullName()
+        {
+            if (RoleID == 2)
+            return "Кассир: " + base.GetFullName();
+            if (RoleID == 1)
+                return "Админ :" + base.GetFullName();
+            return null;
+        }
     }
 }

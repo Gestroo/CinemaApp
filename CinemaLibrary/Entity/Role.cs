@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CinemaLibrary.Entity
 {
-    public class Role
+    public class Role //Роль доступа
     {
         public int ID { get; set; }
         [Required]

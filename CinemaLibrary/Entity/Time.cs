@@ -6,7 +6,7 @@ using System.Text;
 
 namespace CinemaLibrary.Entity
 {
-    public class Time
+    public class Time //Времена сеансов
     {
         public int ID { get; set; }
         [Required]

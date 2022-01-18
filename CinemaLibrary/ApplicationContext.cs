@@ -36,11 +36,10 @@ namespace CinemaLibrary
         public static List<Time> tmptimes;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Personal>().Ignore(p => p.FullName);
-            modelBuilder.Entity<Client>().Ignore(c => c.FullName);
             modelBuilder.Entity<Seance>().Ignore(s => s.Date).Ignore(s => s.Time);
             modelBuilder.Entity<Film>().Ignore(f => f.Genres).Ignore(f=>f.ogranPlus);
-            modelBuilder.Entity<Client>().HasIndex(c => c.Email).IsUnique();
+            modelBuilder.Entity<Seance>().HasMany(s => s.BoughtSeats).WithMany(bs => bs.BoughtSeances).UsingEntity(j => j.ToTable("SeanceBoughtSeats"));
+            modelBuilder.Entity<Seance>().HasMany(s => s.ReservedSeats).WithMany(rs => rs.ReservedSeances).UsingEntity(j => j.ToTable("SeanceReservedSeats"));
             modelBuilder.Entity<CinemaHall>().HasMany(c => c.SeanceTimes).WithMany(s=>s.Halls).UsingEntity(j=>j.ToTable("CinemaHallTime"));
             modelBuilder.Entity<Role>().HasData(new Role
             {
