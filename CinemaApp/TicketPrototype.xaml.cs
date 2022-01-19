@@ -15,7 +15,6 @@ namespace CinemaApp
             _seance = seance;
             _row = row;
             _number = number;
-
             ShowTicket();
         }
 

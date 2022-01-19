@@ -30,7 +30,9 @@ namespace CinemaApp
         private Seance _seance;
         private Button lastCheckedButton;
         private List<Button> checkedButtons = new List<Button>();
-
+        /// <summary>
+        /// Загрузка данных о купленных и забронированных местах
+        /// </summary>
         private void LoadSeatsInfo()
         {
             foreach (var s in SeatsGrid.Children)
@@ -62,7 +64,9 @@ namespace CinemaApp
         {
             this.booking = booking;
         }
-
+        /// <summary>
+        /// Загрузка информации о текущем сотруднике
+        /// </summary>
         public void LoadData()
         {
             SeanceInfoTextBlock.Text = $"{_seance.Film.Name}, {_seance.Date} {_seance.Time}";
@@ -114,7 +118,11 @@ namespace CinemaApp
             }
 
         }
-
+        /// <summary>
+        /// Очистка выбранных мест
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (var b in checkedButtons)
@@ -146,7 +154,11 @@ namespace CinemaApp
             LoadSeatsInfo();
             checkedButtons.Clear();
         }
-
+        /// <summary>
+        /// Покупка билетов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
             string message = null;
@@ -212,6 +224,11 @@ namespace CinemaApp
             }
 
         }
+        /// <summary>
+        /// Бронирование билета
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookingButton_Click(object sender, RoutedEventArgs e)
         {
             if (checkedButtons.Count == 0) return;
@@ -258,7 +275,11 @@ namespace CinemaApp
             _seance.Save();
             checkedButtons.Clear();
         }
-
+        /// <summary>
+        /// Вывод прототипа билета
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TicketPrototypeButton_Click(object sender, RoutedEventArgs e)
         {
             if (lastCheckedButton == null)

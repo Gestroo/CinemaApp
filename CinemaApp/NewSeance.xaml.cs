@@ -39,6 +39,11 @@ namespace CinemaApp
             if (ActiveGenres.Contains(((CheckBox)sender).Content.ToString()))
                 ActiveGenres.Remove(((CheckBox)sender).Content.ToString());
         }
+        /// <summary>
+        /// Добавление фильма с дальнейшим переходом на форму сеансов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toSeancesButton_Click(object sender, RoutedEventArgs e)
         {
             var film = createFilm();
@@ -51,6 +56,10 @@ namespace CinemaApp
             createFilm();
 
         }
+        /// <summary>
+        /// Создание и добавление фильма в базу данных
+        /// </summary>
+        /// <returns></returns>
         private Film createFilm()
         {
             Film film;

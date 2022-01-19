@@ -26,6 +26,9 @@ namespace CinemaApp
         }
         private Personal _personal;
         public delegate void GetBooking(Booking booking);
+        /// <summary>
+        /// Обновление данных о сеансах
+        /// </summary>
         public void UpdateData()
         {
             List<Seance> seances = Seance.GetSeances();
@@ -63,7 +66,11 @@ namespace CinemaApp
         {
             UpdateData();
         }
-
+        /// <summary>
+        /// Переход к форме зала с помощью двойного клика по одному из сеансов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
         {
 
@@ -106,7 +113,6 @@ namespace CinemaApp
         }
         public void LoadHalls()
         {
-
             hallsComboBox.ItemsSource = CinemaHall.GetHalls();
         }
         public void LoadName(Personal personal)

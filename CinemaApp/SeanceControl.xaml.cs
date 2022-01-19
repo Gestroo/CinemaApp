@@ -34,7 +34,11 @@ namespace CinemaApp
         }
 
 
-
+        /// <summary>
+        /// Добавление сеансов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveSeancesButton_Click(object sender, RoutedEventArgs e)
         {
             if (chooseFilmComboBox.SelectedItem == null || chooseHallComboBox.SelectedItem == null)
@@ -108,6 +112,12 @@ namespace CinemaApp
             }
         }
         public List<string> hallTimes = new List<string>();
+
+        /// <summary>
+        /// Переключение между залами
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void chooseHallComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch ((e.AddedItems[0] as CinemaHall).HallName)
