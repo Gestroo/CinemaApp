@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace CinemaLibrary.Entity
@@ -14,7 +11,7 @@ namespace CinemaLibrary.Entity
         [Required]
         public string Password { get; set; }
         public int RoleID { get; set; }
-       
+
         public virtual Role Role { get; set; }
         private static ApplicationContext db = Context.Db;
 
@@ -25,7 +22,7 @@ namespace CinemaLibrary.Entity
         public override string GetFullName()
         {
             if (RoleID == 2)
-            return "Кассир: " + base.GetFullName();
+                return "Кассир: " + base.GetFullName();
             if (RoleID == 1)
                 return "Админ :" + base.GetFullName();
             return null;

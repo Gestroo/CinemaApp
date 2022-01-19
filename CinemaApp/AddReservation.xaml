@@ -37,7 +37,7 @@
         <TextBox x:Name="MiddleNameTextBox" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Black" FontSize="18" Padding="5 5 0 0" Height="40" materialDesign:HintAssist.Hint="Отчество" BorderThickness="2" Cursor="IBeam">
 
         </TextBox>
-        <TextBox x:Name="PhoneNumberTextBox" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Black" FontSize="18" Padding="5 5 0 0" Height="40" materialDesign:HintAssist.Hint="Телефон" BorderThickness="2" Cursor="IBeam">
+        <TextBox x:Name="PhoneNumberTextBox" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" BorderBrush="Black" FontSize="18" Padding="5 5 0 0" Height="40" materialDesign:HintAssist.Hint="Телефон" BorderThickness="2" Cursor="IBeam"  PreviewTextInput="PhoneNumberTextBox_PreviewTextInput" TextChanged="PhoneNumberTextBox_TextChanged" >
 
         </TextBox>
         <DatePicker x:Name="BirthDatePicker" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" materialDesign:HintAssist.Hint="Дата рождения" BorderBrush="Black" BorderThickness="2" FontSize="18">

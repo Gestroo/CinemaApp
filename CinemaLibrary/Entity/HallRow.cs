@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Linq;
 
 namespace CinemaLibrary.Entity
@@ -14,11 +12,11 @@ namespace CinemaLibrary.Entity
         [Required]
         public int RowNumber { get; set; }
         [Required]
-        public virtual List<HallSeat> Seats { get; set; } 
-        
+        public virtual List<HallSeat> Seats { get; set; }
+
         public int CinemaHallID { get; set; }
 
-        public HallRow() {Seats = new List<HallSeat>(); }
+        public HallRow() { Seats = new List<HallSeat>(); }
         private static ApplicationContext db = Context.Db;
         public static HallRow GetHallRowByNumber(int rowNumber)
         {

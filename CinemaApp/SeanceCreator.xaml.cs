@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CinemaLibrary.Entity;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using CinemaLibrary.Entity;
 
 namespace CinemaApp
 {
@@ -26,7 +17,7 @@ namespace CinemaApp
             LoadName(personal);
         }
 
-        
+
         private void NewSeanceButton_Click(object sender, RoutedEventArgs e)
         {
             NewSeanceButton.Background = Brushes.Gray;
@@ -41,7 +32,7 @@ namespace CinemaApp
             NameTextBlock.FontSize = 20;
             NameTextBlock.Text = personal.GetFIO();
         }
-        public void PageControl() 
+        public void PageControl()
         {
             NewSeanceButton.Background = Brushes.Purple;
             SeanceControlButton.Background = Brushes.Gray;

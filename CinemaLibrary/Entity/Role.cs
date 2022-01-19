@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace CinemaLibrary.Entity
 {
@@ -11,9 +9,9 @@ namespace CinemaLibrary.Entity
         [Required]
         public string PersonalRole { get; set; }
 
-        public virtual List<Personal> Personals {get;set;}
+        public virtual List<Personal> Personals { get; set; }
 
-        public Role() 
+        public Role()
         {
             Personals = new List<Personal>();
         }

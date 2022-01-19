@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Linq;
 
 
@@ -23,26 +22,27 @@ namespace CinemaLibrary.Entity
         public string Date { get { return SeanceDate.ToString("d"); } }
         public string Time { get { return SeanceDate.ToString("t"); } }
 
-        public Seance() {
+        public Seance()
+        {
             BoughtSeats = new List<HallSeat>();
             ReservedSeats = new List<HallSeat>();
         }
 
         private static ApplicationContext db = Context.Db;
-        public static List<Seance> GetSeances() 
+        public static List<Seance> GetSeances()
         {
-             { return db.Seance.ToList(); }
+            { return db.Seance.ToList(); }
         }
-        public static Seance? GetSeance(DateTime dateTime,CinemaHall cinemaHall)
+        public static Seance GetSeance(DateTime dateTime, CinemaHall cinemaHall)
         {
-            return db.Seance.Where(s => s.SeanceDate == dateTime).Where(s=>s.CinemaHall==cinemaHall).FirstOrDefault();
+            return db.Seance.Where(s => s.SeanceDate == dateTime).Where(s => s.CinemaHall == cinemaHall).FirstOrDefault();
         }
         public static void Add(Seance seance)
         {
             db.Seance.Add(seance);
             db.SaveChanges();
         }
-        public void Save() 
+        public void Save()
         {
             db.SaveChanges();
         }

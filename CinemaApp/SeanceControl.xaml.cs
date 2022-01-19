@@ -1,17 +1,9 @@
-﻿using System;
+﻿using CinemaLibrary;
+using CinemaLibrary.Entity;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CinemaLibrary;
-using CinemaLibrary.Entity;
 
 namespace CinemaApp
 {
@@ -23,7 +15,7 @@ namespace CinemaApp
         public SeanceControl()
         {
             InitializeComponent();
-           GetFilmNameComboBox();
+            GetFilmNameComboBox();
             chooseHallComboBox.ItemsSource = CinemaHall.GetHalls();
         }
 
@@ -34,7 +26,7 @@ namespace CinemaApp
             chooseHallComboBox.ItemsSource = CinemaHall.GetHalls();
             chooseFilmComboBox.SelectedItem = film;
         }
-        
+
         public void GetFilmNameComboBox()
         {
             var filmName = Film.GetFilms();
@@ -55,13 +47,13 @@ namespace CinemaApp
             {
                 SeanceDateCalendar.SelectedDate = SeanceDateCalendar.DisplayDate;
             }
-            if (ActiveTimes.Count==0)
+            if (ActiveTimes.Count == 0)
             {
                 string message = $"Вы не выбрали ни одного времени";
                 MessageBox.Show(message);
                 return;
             }
-            
+
             var hall = chooseHallComboBox.SelectedItem as CinemaHall;
             var film = chooseFilmComboBox.SelectedItem as Film;
             var filmstart = film.DateStart;
@@ -70,45 +62,46 @@ namespace CinemaApp
 
             for (int i = 0; i < hallTimes.Count - 1; i++)
             {
-                if ((DateTime.Parse(hallTimes[i+1]) - DateTime.Parse(hallTimes[i])).TotalMinutes < film.Duration)
+                if ((DateTime.Parse(hallTimes[i + 1]) - DateTime.Parse(hallTimes[i])).TotalMinutes < film.Duration)
                 {
-                    string message = $"Фильм не помещается между сеансами {SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(hallTimes[i]).TimeOfDay)} и {SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(hallTimes[i+1]).TimeOfDay)}";
+                    string message = $"Фильм не помещается между сеансами {SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(hallTimes[i]).TimeOfDay)} и {SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(hallTimes[i + 1]).TimeOfDay)}";
                     MessageBox.Show(message);
                     return;
                 }
             }
-            
+
             foreach (var t in ActiveTimes)
-            { if (SeanceDateCalendar.SelectedDate.Value.Date > filmfinish || SeanceDateCalendar.SelectedDate.Value.Date < filmstart)
+            {
+                if (SeanceDateCalendar.SelectedDate.Value.Date > filmfinish || SeanceDateCalendar.SelectedDate.Value.Date < filmstart)
                 {
                     string message = $"Некорректная дата сеанса {SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(t).TimeOfDay)}";
                     MessageBox.Show(message);
                     return;
                 }
-                if (Seance.GetSeance(SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(t).TimeOfDay),chooseHallComboBox.SelectedItem as CinemaHall) != null)
+                if (Seance.GetSeance(SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(t).TimeOfDay), chooseHallComboBox.SelectedItem as CinemaHall) != null)
                 {
                     string message = $"Сеанс {SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(t).TimeOfDay)} {hall.HallName} уже существует";
                     MessageBox.Show(message);
                     return;
-                } 
+                }
             }
-                MessageBoxResult result = MessageBox.Show(
-               "Сохранить изменения?",
-               "Сохранить",
-               MessageBoxButton.OKCancel);
+            MessageBoxResult result = MessageBox.Show(
+           "Сохранить изменения?",
+           "Сохранить",
+           MessageBoxButton.OKCancel);
             if (result == MessageBoxResult.OK)
-            {   
-                    foreach (var t in ActiveTimes)
-                    {
+            {
+                foreach (var t in ActiveTimes)
+                {
 
-                        seance = new Seance
-                        {
-                            CinemaHall = chooseHallComboBox.SelectedItem as CinemaHall,
-                            Film = chooseFilmComboBox.SelectedItem as Film,
-                            SeanceDate = SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(t).TimeOfDay)
-                        };
-                            Seance.Add(seance);
-                    }
+                    seance = new Seance
+                    {
+                        CinemaHall = chooseHallComboBox.SelectedItem as CinemaHall,
+                        Film = chooseFilmComboBox.SelectedItem as Film,
+                        SeanceDate = SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(t).TimeOfDay)
+                    };
+                    Seance.Add(seance);
+                }
                 string message = $"Сеансы успешно добавлены";
                 MessageBox.Show(message);
                 ActiveTimes.Clear();
@@ -117,10 +110,10 @@ namespace CinemaApp
         public List<string> hallTimes = new List<string>();
         private void chooseHallComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            switch ((e.AddedItems[0] as CinemaHall).HallName) 
-            
+            switch ((e.AddedItems[0] as CinemaHall).HallName)
+
             {
-                case "Зал 1" :
+                case "Зал 1":
                     hallTimes.Clear();
                     ActiveTimes.Clear();
                     SeanceTime.Children.Clear();
@@ -243,8 +236,8 @@ namespace CinemaApp
                             Content = ApplicationContext.tmptimes[i].SeanceTime.ToString("t"),
                             FontSize = 22
                         };
-                         checkbox.Checked += TimeChecked;
-                         checkbox.Unchecked += TimeUnchecked;
+                        checkbox.Checked += TimeChecked;
+                        checkbox.Unchecked += TimeUnchecked;
                         SeanceTime.Children.Add(checkbox);
                         hallTimes.Add(ApplicationContext.tmptimes[i].SeanceTime.ToString("t"));
                     }

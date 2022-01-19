@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Linq;
 
 namespace CinemaLibrary.Entity
@@ -27,13 +26,19 @@ namespace CinemaLibrary.Entity
             this.BirthDate = BirthDate;
             Bookings = new List<Booking>();
         }
-        public static Client FindClient(string lastName, string firstName, string middleName,string phoneNumber, DateTime birthDate) 
+        public static Client FindClient(string lastName, string firstName, string middleName, string phoneNumber, DateTime birthDate)
         {
-            return db.Client.Where(c => c.LastName == lastName && c.FirstName == firstName && c.MiddleName == middleName && c.PhoneNumber == phoneNumber && c.BirthDate == birthDate ).FirstOrDefault();
+            return db.Client.Where(c => c.LastName == lastName && c.FirstName == firstName && c.MiddleName == middleName && c.PhoneNumber == phoneNumber && c.BirthDate == birthDate).FirstOrDefault();
         }
-        public static Client FindClientByTicket(Seance seance, int row, int seat) 
+        public static Client FindClientByTicket(Seance seance, int row, int seat)
         {
-            return null;
+            return db.Client.FirstOrDefault(c => c.Bookings.Any(b => b.Reservations.Any(r => r.Ticket == Ticket.FindTicket(seance, row, seat))));
+
+        }
+        public static void Add(Client client)
+        {
+            db.Add(client);
+            db.SaveChanges();
         }
         public override string GetFullName()
         {

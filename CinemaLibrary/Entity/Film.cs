@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Linq;
 
 namespace CinemaLibrary.Entity
@@ -30,28 +29,28 @@ namespace CinemaLibrary.Entity
 
         private static ApplicationContext db = Context.Db;
         public static List<string> GetFilmName()
-        {  
-           return db.Film.Select(x => x.Name).ToList();
+        {
+            return db.Film.Select(x => x.Name).ToList();
         }
         public static List<Film> GetFilms() => db.Film.ToList(); //лямбда-выражение заменяет return
-        
-        public static void Add(Film film) 
+
+        public static void Add(Film film)
         {
             db.Film.Add(film);
             db.SaveChanges();
         }
-        public static Film GetFilmByID(int id) 
+        public static Film GetFilmByID(int id)
         {
             return db.Film.Where(f => f.ID == id).FirstOrDefault();
         }
-        public string GetGenresInOneRow() 
+        public string GetGenresInOneRow()
         {
-           
+
             string tmpstring = "";
             foreach (var g in Genre)
                 tmpstring += g.Title + ", ";
             if (tmpstring.Length != 0)
-            tmpstring = tmpstring.Substring(0, tmpstring.Length - 2);
+                tmpstring = tmpstring.Substring(0, tmpstring.Length - 2);
             return tmpstring;
         }
     }

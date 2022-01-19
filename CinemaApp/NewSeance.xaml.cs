@@ -1,17 +1,8 @@
-﻿using System;
+﻿using CinemaLibrary.Entity;
+using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using CinemaLibrary.Entity;
-using CinemaLibrary;
 
 namespace CinemaApp
 {
@@ -38,15 +29,15 @@ namespace CinemaApp
             }
         }
         private List<string> ActiveGenres = new List<string>();
-        private void GenreChecked(object sender, RoutedEventArgs e) 
+        private void GenreChecked(object sender, RoutedEventArgs e)
         {
             if (ActiveGenres.Contains(((CheckBox)sender).Content.ToString())) return;
             ActiveGenres.Add(((CheckBox)sender).Content.ToString());
         }
         private void GenreUnchecked(object sender, RoutedEventArgs e)
         {
-            if (ActiveGenres.Contains(((CheckBox)sender).Content.ToString())) 
-            ActiveGenres.Remove(((CheckBox)sender).Content.ToString());
+            if (ActiveGenres.Contains(((CheckBox)sender).Content.ToString()))
+                ActiveGenres.Remove(((CheckBox)sender).Content.ToString());
         }
         private void toSeancesButton_Click(object sender, RoutedEventArgs e)
         {
@@ -58,9 +49,9 @@ namespace CinemaApp
         private void addFilm_Click(object sender, RoutedEventArgs e)
         {
             createFilm();
-            
+
         }
-        private Film createFilm() 
+        private Film createFilm()
         {
             Film film;
             List<Genre> tmpgenres = new List<Genre>();
@@ -71,14 +62,14 @@ namespace CinemaApp
             }
             string tmpstring = FilmRestrictionComboBox.Text;
 
-            if (FilmNameTextBox.Text == "" || FilmDurationTextBox.Text == "" || FilmStartDatePicker.Text == "" || FilmFinishDatePicker.Text == ""||tmpstring=="")
+            if (FilmNameTextBox.Text == "" || FilmDurationTextBox.Text == "" || FilmStartDatePicker.Text == "" || FilmFinishDatePicker.Text == "" || tmpstring == "")
             {
                 string messageAlarm = $"Заполните все поля";
                 MessageBox.Show(messageAlarm);
                 return null;
             }
             if ((DateTime)FilmStartDatePicker.SelectedDate < DateTime.Now.Date)
-                 {
+            {
                 string messageAlarm = $"Дата старта должна быть больше сегодняшней";
                 MessageBox.Show(messageAlarm);
                 return null;
@@ -100,16 +91,16 @@ namespace CinemaApp
                 MessageBox.Show(messageAlarm);
                 return null;
             }
-            
+
 
             film = new Film
             {
                 Name = FilmNameTextBox.Text,
                 Duration = Convert.ToInt32(FilmDurationTextBox.Text),
-                Restriction = int.Parse(tmpstring.Substring(0,tmpstring.Length-1)),
+                Restriction = int.Parse(tmpstring.Substring(0, tmpstring.Length - 1)),
                 Description = FilmDescriptionTextBox.Text,
                 Genre = tmpgenres,
-                DateStart = (DateTime)FilmStartDatePicker.SelectedDate, 
+                DateStart = (DateTime)FilmStartDatePicker.SelectedDate,
                 DateFinish = (DateTime)FilmFinishDatePicker.SelectedDate
             };
             Film.Add(film);

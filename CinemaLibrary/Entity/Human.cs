@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CinemaLibrary.Entity
+﻿namespace CinemaLibrary.Entity
 {
     public class Human
     {
@@ -21,7 +17,7 @@ namespace CinemaLibrary.Entity
             this.FirstName = FirstName;
             this.PhoneNumber = PhoneNumber;
         }
-        public Human(string Lastname, string FirstName, string PhoneNumber,string MiddleName)
+        public Human(string Lastname, string FirstName, string PhoneNumber, string MiddleName)
         {
             this.LastName = Lastname;
             this.FirstName = FirstName;
@@ -43,4 +39,4 @@ namespace CinemaLibrary.Entity
     }
 }
 
-    
+

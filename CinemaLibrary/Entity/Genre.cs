@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Linq;
 
 namespace CinemaLibrary.Entity
@@ -19,13 +17,13 @@ namespace CinemaLibrary.Entity
         public Genre() { Films = new List<Film>(); }
 
         private static ApplicationContext db = Context.Db;
-        public static List<string> GetGenres() 
+        public static List<string> GetGenres()
         {
-             return db.Genre.Select(g=>g.Title).ToList(); 
+            return db.Genre.Select(g => g.Title).ToList();
         }
         public static Genre GetGenreByTitle(string title)
         {
-            return db.Genre.Where(g => g.Title==title).FirstOrDefault(); 
+            return db.Genre.Where(g => g.Title == title).FirstOrDefault();
         }
     }
 }

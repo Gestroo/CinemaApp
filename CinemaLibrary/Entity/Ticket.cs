@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace CinemaLibrary.Entity
@@ -18,16 +15,15 @@ namespace CinemaLibrary.Entity
         public decimal TotalPrice { get; set; }
         public int SeanceID { get; set; }
         [Required]
-        public virtual Reservation Reservation {get;set;}
         public virtual Personal Personal { get; set; }
         private static ApplicationContext db = Context.Db;
 
 
-        public static Ticket FindTicket(Seance seance, int row, int seat) 
+        public static Ticket FindTicket(Seance seance, int row, int seat)
         {
             return db.Ticket.FirstOrDefault(t => t.Seance == seance && t.Row.RowNumber == row && t.Seat.SeatNumber == seat);
         }
-        public static void Add(Ticket ticket )
+        public static void Add(Ticket ticket)
         {
             db.Ticket.Add(ticket);
             db.SaveChanges();

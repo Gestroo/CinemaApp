@@ -35,7 +35,7 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Background="GhostWhite" Grid.RowSpan="9" Grid.Column="4" Grid.ColumnSpan="7">
+        <Grid x:Name="SeatsGrid" Background="GhostWhite" Grid.RowSpan="9" Grid.Column="4" Grid.ColumnSpan="7">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
