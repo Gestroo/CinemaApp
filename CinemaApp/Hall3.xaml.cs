@@ -22,6 +22,7 @@ namespace CinemaApp
             LoadData();
             LoadSeatsInfo();
             notify += GetBookingEvent;
+            UpdateCost();
         }
 
         public event GetBooking notify;
@@ -30,7 +31,9 @@ namespace CinemaApp
         private Seance _seance;
         private Button lastCheckedButton;
         private List<Button> checkedButtons = new List<Button>();
-
+        /// <summary>
+        /// Загрузка данных о купленных и забронированных местах
+        /// </summary>
         private void LoadSeatsInfo()
         {
             foreach (var s in SeatsGrid.Children)
@@ -58,11 +61,17 @@ namespace CinemaApp
 
         }
 
+        private void UpdateCost()
+        {
+            TotalCostTextBlock.Text = "Cтоимость : " + (_seance.Cost * checkedButtons.Count).ToString();
+        }
         private void GetBookingEvent(Booking booking)
         {
             this.booking = booking;
         }
-
+        /// <summary>
+        /// Загрузка информации о текущем сотруднике
+        /// </summary>
         public void LoadData()
         {
             SeanceInfoTextBlock.Text = $"{_seance.Film.Name}, {_seance.Date} {_seance.Time}";
@@ -93,6 +102,7 @@ namespace CinemaApp
                 if (checkedButtons.Count == 0)
                     lastCheckedButton = null;
                 else lastCheckedButton = checkedButtons[checkedButtons.Count - 1];
+                UpdateCost();
             }
             else
             {
@@ -111,10 +121,15 @@ namespace CinemaApp
                 checkedButtons.Add(tmp_button);
                 tmp_button.Background = Brushes.Gray;
                 lastCheckedButton = tmp_button;
+                UpdateCost();
             }
 
         }
-
+        /// <summary>
+        /// Очистка выбранных мест
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             foreach (var b in checkedButtons)
@@ -145,8 +160,13 @@ namespace CinemaApp
             lastCheckedButton = null;
             LoadSeatsInfo();
             checkedButtons.Clear();
+            UpdateCost();
         }
-
+        /// <summary>
+        /// Покупка билетов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
             string message = null;
@@ -209,9 +229,15 @@ namespace CinemaApp
                     }
                 }
                 checkedButtons.Clear();
+                UpdateCost();
             }
 
         }
+        /// <summary>
+        /// Бронирование билета
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BookingButton_Click(object sender, RoutedEventArgs e)
         {
             if (checkedButtons.Count == 0) return;
@@ -257,8 +283,13 @@ namespace CinemaApp
             }
             _seance.Save();
             checkedButtons.Clear();
+            UpdateCost();
         }
-
+        /// <summary>
+        /// Вывод прототипа билета
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TicketPrototypeButton_Click(object sender, RoutedEventArgs e)
         {
             if (lastCheckedButton == null)

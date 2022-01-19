@@ -17,7 +17,7 @@
             this.FirstName = FirstName;
             this.PhoneNumber = PhoneNumber;
         }
-        public Human(string Lastname, string FirstName, string PhoneNumber, string MiddleName)
+        public Human(string Lastname, string FirstName, string MiddleName, string PhoneNumber )
         {
             this.LastName = Lastname;
             this.FirstName = FirstName;

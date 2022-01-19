@@ -143,10 +143,14 @@
             <LineBreak/>
             Дата,время
         </TextBlock>
-        <Button x:Name="ClearButton" Content="Очистить" Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="2" Margin="30 0 30 0" FontSize="24" Height="60" Click="ClearButton_Click" />
-        <Button x:Name="BuyButton" Content="Купить" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Margin="30 0 30 0" FontSize="24" Height="60" Click="BuyButton_Click" />
-        <Button x:Name="BookingButton" Content="Забронировать" Grid.Column="1" Grid.Row="6" Grid.ColumnSpan="2" Margin="30 0 30 0" FontSize="24" Height="60" Click="BookingButton_Click"/>
-        <Button x:Name="TicketPrototypeButton" Content="Прототип билета" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" Margin="30 0 30 0" FontSize="24" Height="60" Click="TicketPrototypeButton_Click"/>
+        <Button x:Name="ClearButton" Content="Очистить" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="2" Margin="30 0 30 0" FontSize="24" Height="60" Click="ClearButton_Click" />
+        <Button x:Name="BuyButton" Content="Купить" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Margin="30 0 30 0" FontSize="24" Height="60" Click="BuyButton_Click" />
+        <Button x:Name="BookingButton" Content="Забронировать" Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="2" Margin="30 0 30 0" FontSize="24" Height="60" Click="BookingButton_Click"/>
+        <Button x:Name="TicketPrototypeButton" Content="Прототип билета" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" Margin="30 0 30 0" FontSize="24" Height="60" Click="TicketPrototypeButton_Click" Cursor="Hand"/>
+
+        <TextBlock x:Name="TotalCostTextBlock" Grid.Column="1" Grid.Row="11" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">
+
+        </TextBlock>
 
         <Label Grid.Row="10" Grid.Column="7" Background="Aquamarine" Height="20" Width="20" HorizontalAlignment="Right" Margin="0 0 10 0"/>
         <Label Grid.Row="10" Grid.Column="8" Content="Забронировано" FontSize="22" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"/>

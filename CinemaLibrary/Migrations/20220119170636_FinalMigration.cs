@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CinemaLibrary.Migrations
 {
-    public partial class zarabotaiMigration : Migration
+    public partial class FinalMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -14,7 +14,7 @@ namespace CinemaLibrary.Migrations
                 {
                     HallNumber = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    HallName = table.Column<string>(type: "text", nullable: false)
+                    HallName = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -27,14 +27,11 @@ namespace CinemaLibrary.Migrations
                 {
                     ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Login = table.Column<string>(type: "text", nullable: false),
-                    Password = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    MiddleName = table.Column<string>(type: "text", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    Email = table.Column<string>(type: "text", nullable: true),
-                    BirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    BirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    MiddleName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,21 +68,6 @@ namespace CinemaLibrary.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Genre", x => x.ID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PriceFormer",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PriceWeekend = table.Column<bool>(type: "boolean", nullable: false),
-                    PriceTime = table.Column<TimeSpan>(type: "interval", nullable: false),
-                    Discount = table.Column<string>(type: "text", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PriceFormer", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,8 +122,8 @@ namespace CinemaLibrary.Migrations
                 {
                     ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ClientID = table.Column<int>(type: "integer", nullable: true),
-                    DateTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    DateTime = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ClientID = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -151,7 +133,7 @@ namespace CinemaLibrary.Migrations
                         column: x => x.ClientID,
                         principalTable: "Client",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,7 +144,8 @@ namespace CinemaLibrary.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     CinemaHallHallNumber = table.Column<int>(type: "integer", nullable: true),
                     FilmID = table.Column<int>(type: "integer", nullable: true),
-                    SeanceDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    SeanceDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    Cost = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -213,10 +196,11 @@ namespace CinemaLibrary.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Login = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
-                    LastName = table.Column<string>(type: "text", nullable: false),
-                    FirstName = table.Column<string>(type: "text", nullable: false),
-                    MiddleName = table.Column<string>(type: "text", nullable: true),
-                    RoleID = table.Column<int>(type: "integer", nullable: false)
+                    RoleID = table.Column<int>(type: "integer", nullable: false),
+                    LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    MiddleName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -274,22 +258,51 @@ namespace CinemaLibrary.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CashBox",
+                name: "SeanceBoughtSeats",
                 columns: table => new
                 {
-                    CashBoxNumber = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PersonalID = table.Column<int>(type: "integer", nullable: true)
+                    BoughtSeancesID = table.Column<int>(type: "integer", nullable: false),
+                    BoughtSeatsID = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CashBox", x => x.CashBoxNumber);
+                    table.PrimaryKey("PK_SeanceBoughtSeats", x => new { x.BoughtSeancesID, x.BoughtSeatsID });
                     table.ForeignKey(
-                        name: "FK_CashBox_Personal_PersonalID",
-                        column: x => x.PersonalID,
-                        principalTable: "Personal",
+                        name: "FK_SeanceBoughtSeats_HallSeat_BoughtSeatsID",
+                        column: x => x.BoughtSeatsID,
+                        principalTable: "HallSeat",
                         principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SeanceBoughtSeats_Seance_BoughtSeancesID",
+                        column: x => x.BoughtSeancesID,
+                        principalTable: "Seance",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SeanceReservedSeats",
+                columns: table => new
+                {
+                    ReservedSeancesID = table.Column<int>(type: "integer", nullable: false),
+                    ReservedSeatsID = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SeanceReservedSeats", x => new { x.ReservedSeancesID, x.ReservedSeatsID });
+                    table.ForeignKey(
+                        name: "FK_SeanceReservedSeats_HallSeat_ReservedSeatsID",
+                        column: x => x.ReservedSeatsID,
+                        principalTable: "HallSeat",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SeanceReservedSeats_Seance_ReservedSeancesID",
+                        column: x => x.ReservedSeancesID,
+                        principalTable: "Seance",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -298,22 +311,15 @@ namespace CinemaLibrary.Migrations
                 {
                     ID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    TicketNumber = table.Column<int>(type: "integer", nullable: false),
                     RowID = table.Column<int>(type: "integer", nullable: true),
                     SeatID = table.Column<int>(type: "integer", nullable: true),
                     TotalPrice = table.Column<decimal>(type: "numeric", nullable: false),
-                    Reservation = table.Column<bool>(type: "boolean", nullable: false),
-                    CashBoxNumber = table.Column<int>(type: "integer", nullable: true)
+                    SeanceID = table.Column<int>(type: "integer", nullable: false),
+                    PersonalID = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Ticket", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Ticket_CashBox_CashBoxNumber",
-                        column: x => x.CashBoxNumber,
-                        principalTable: "CashBox",
-                        principalColumn: "CashBoxNumber",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Ticket_HallRow_RowID",
                         column: x => x.RowID,
@@ -326,6 +332,18 @@ namespace CinemaLibrary.Migrations
                         principalTable: "HallSeat",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Ticket_Personal_PersonalID",
+                        column: x => x.PersonalID,
+                        principalTable: "Personal",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Ticket_Seance_SeanceID",
+                        column: x => x.SeanceID,
+                        principalTable: "Seance",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -367,6 +385,24 @@ namespace CinemaLibrary.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Genre",
+                columns: new[] { "ID", "Description", "Title" },
+                values: new object[,]
+                {
+                    { 10, null, "Аниме" },
+                    { 9, null, "Вестерн" },
+                    { 8, null, "Мелодрама" },
+                    { 7, null, "Драма" },
+                    { 6, null, "Фэнтези" },
+                    { 11, null, "Триллер" },
+                    { 4, null, "Комедия" },
+                    { 3, null, "Мультфильм" },
+                    { 2, null, "Ужасы" },
+                    { 1, null, "Боевик" },
+                    { 5, null, "Фантастика" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "ID", "PersonalRole" },
                 values: new object[,]
@@ -388,20 +424,20 @@ namespace CinemaLibrary.Migrations
                     { 25, new DateTime(1, 1, 1, 12, 30, 0, 0, DateTimeKind.Unspecified) },
                     { 23, new DateTime(1, 1, 1, 8, 40, 0, 0, DateTimeKind.Unspecified) },
                     { 24, new DateTime(1, 1, 1, 10, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 16, new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 26, new DateTime(1, 1, 1, 15, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 27, new DateTime(1, 1, 1, 17, 10, 0, 0, DateTimeKind.Unspecified) },
+                    { 16, new DateTime(1, 1, 1, 18, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 22, new DateTime(1, 1, 1, 21, 40, 0, 0, DateTimeKind.Unspecified) },
                     { 15, new DateTime(1, 1, 1, 15, 30, 0, 0, DateTimeKind.Unspecified) },
-                    { 11, new DateTime(1, 1, 1, 16, 20, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 13, new DateTime(1, 1, 1, 21, 30, 0, 0, DateTimeKind.Unspecified) },
                     { 12, new DateTime(1, 1, 1, 19, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 28, new DateTime(1, 1, 1, 19, 40, 0, 0, DateTimeKind.Unspecified) },
+                    { 11, new DateTime(1, 1, 1, 16, 20, 0, 0, DateTimeKind.Unspecified) },
                     { 10, new DateTime(1, 1, 1, 13, 40, 0, 0, DateTimeKind.Unspecified) },
                     { 9, new DateTime(1, 1, 1, 11, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 8, new DateTime(1, 1, 1, 8, 30, 0, 0, DateTimeKind.Unspecified) },
                     { 7, new DateTime(1, 1, 1, 23, 20, 0, 0, DateTimeKind.Unspecified) },
-                    { 6, new DateTime(1, 1, 1, 21, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 28, new DateTime(1, 1, 1, 19, 40, 0, 0, DateTimeKind.Unspecified) },
                     { 5, new DateTime(1, 1, 1, 18, 30, 0, 0, DateTimeKind.Unspecified) },
                     { 4, new DateTime(1, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified) },
                     { 3, new DateTime(1, 1, 1, 13, 30, 0, 0, DateTimeKind.Unspecified) },
@@ -450,11 +486,11 @@ namespace CinemaLibrary.Migrations
 
             migrationBuilder.InsertData(
                 table: "Personal",
-                columns: new[] { "ID", "FirstName", "LastName", "Login", "MiddleName", "Password", "RoleID" },
+                columns: new[] { "ID", "FirstName", "LastName", "Login", "MiddleName", "Password", "PhoneNumber", "RoleID" },
                 values: new object[,]
                 {
-                    { 1, "Дмитрий", "Широков", "admin", "Романович", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", 1 },
-                    { 2, "Зинаида", "Ромашкова", "cashier1", "Григорьевна", "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5", 2 }
+                    { 1, "Дмитрий", "Широков", "admin", "+79513538360", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918", "Романович", 1 },
+                    { 2, "Зинаида", "Ромашкова", "cashier1", "+79229334455", "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5", "Григорьевна", 2 }
                 });
 
             migrationBuilder.InsertData(
@@ -758,19 +794,14 @@ namespace CinemaLibrary.Migrations
                 column: "ClientID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CashBox_PersonalID",
-                table: "CashBox",
-                column: "PersonalID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_CinemaHallTime_SeanceTimesID",
                 table: "CinemaHallTime",
                 column: "SeanceTimesID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Client_Email",
+                name: "IX_Client_PhoneNumber",
                 table: "Client",
-                column: "Email",
+                column: "PhoneNumber",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -787,6 +818,12 @@ namespace CinemaLibrary.Migrations
                 name: "IX_HallSeat_HallRowID",
                 table: "HallSeat",
                 column: "HallRowID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Personal_PhoneNumber",
+                table: "Personal",
+                column: "PhoneNumber",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Personal_RoleID",
@@ -814,14 +851,29 @@ namespace CinemaLibrary.Migrations
                 column: "FilmID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ticket_CashBoxNumber",
+                name: "IX_SeanceBoughtSeats_BoughtSeatsID",
+                table: "SeanceBoughtSeats",
+                column: "BoughtSeatsID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SeanceReservedSeats_ReservedSeatsID",
+                table: "SeanceReservedSeats",
+                column: "ReservedSeatsID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ticket_PersonalID",
                 table: "Ticket",
-                column: "CashBoxNumber");
+                column: "PersonalID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ticket_RowID",
                 table: "Ticket",
                 column: "RowID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Ticket_SeanceID",
+                table: "Ticket",
+                column: "SeanceID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ticket_SeatID",
@@ -838,13 +890,13 @@ namespace CinemaLibrary.Migrations
                 name: "FilmGenre");
 
             migrationBuilder.DropTable(
-                name: "PriceFormer");
-
-            migrationBuilder.DropTable(
                 name: "Reservation");
 
             migrationBuilder.DropTable(
-                name: "Seance");
+                name: "SeanceBoughtSeats");
+
+            migrationBuilder.DropTable(
+                name: "SeanceReservedSeats");
 
             migrationBuilder.DropTable(
                 name: "Time");
@@ -859,13 +911,7 @@ namespace CinemaLibrary.Migrations
                 name: "Ticket");
 
             migrationBuilder.DropTable(
-                name: "Film");
-
-            migrationBuilder.DropTable(
                 name: "Client");
-
-            migrationBuilder.DropTable(
-                name: "CashBox");
 
             migrationBuilder.DropTable(
                 name: "HallSeat");
@@ -874,10 +920,16 @@ namespace CinemaLibrary.Migrations
                 name: "Personal");
 
             migrationBuilder.DropTable(
+                name: "Seance");
+
+            migrationBuilder.DropTable(
                 name: "HallRow");
 
             migrationBuilder.DropTable(
                 name: "Role");
+
+            migrationBuilder.DropTable(
+                name: "Film");
 
             migrationBuilder.DropTable(
                 name: "CinemaHall");

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CinemaLibrary
 {
-    static class EntityConfiguration
+    public static class EntityConfiguration
     {
         public static void PersonalConfigure(EntityTypeBuilder<Personal> builder)
         {
@@ -44,26 +44,33 @@ namespace CinemaLibrary
         public static void PersonalDataConfigure(EntityTypeBuilder<Personal> builder)
         {
             builder.HasData(new Personal
+            (
+                 "Широков",
+               "Дмитрий",
+                "Романович",
+                "+79513538360"
+            )
             {
                 ID = 1,
                 Login = "admin",
                 Password = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
-                LastName = "Широков",
-                FirstName = "Дмитрий",
-                MiddleName = "Романович",
                 RoleID = 1
             },
              new Personal
+             (
+                  "Ромашкова",
+                  "Зинаида",
+                "Григорьевна",
+                 "+79229334455"
+                 )
              {
                  ID = 2,
                  Login = "cashier1",
                  Password = "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
-                 LastName = "Ромашкова",
-                 FirstName = "Зинаида",
-                 MiddleName = "Григорьевна",
+
                  RoleID = 2
              }
-             );
+             ) ;
         }
         public static void GenreDataConfigure(EntityTypeBuilder<Genre> builder)
         {

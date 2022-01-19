@@ -102,7 +102,8 @@ namespace CinemaApp
                     {
                         CinemaHall = chooseHallComboBox.SelectedItem as CinemaHall,
                         Film = chooseFilmComboBox.SelectedItem as Film,
-                        SeanceDate = SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(t).TimeOfDay)
+                        SeanceDate = SeanceDateCalendar.SelectedDate.Value.Date.Add(DateTime.Parse(t).TimeOfDay),
+                        Cost = 250
                     };
                     Seance.Add(seance);
                 }
@@ -127,17 +128,17 @@ namespace CinemaApp
                     hallTimes.Clear();
                     ActiveTimes.Clear();
                     SeanceTime.Children.Clear();
-                    for (int i = 0; i < 7; i++)
+                    for (int i = 1; i < 8; i++)
                     {
                         var checkbox = new CheckBox
                         {
-                            Content = ApplicationContext.tmptimes[i].SeanceTime.ToString("t"),
+                            Content = Time.GetTimeByID(i).SeanceTime.ToString("t"),
                             FontSize = 22
                         };
                         checkbox.Checked += TimeChecked;
                         checkbox.Unchecked += TimeUnchecked;
                         SeanceTime.Children.Add(checkbox);
-                        hallTimes.Add(ApplicationContext.tmptimes[i].SeanceTime.ToString("t"));
+                        hallTimes.Add(Time.GetTimeByID(i).SeanceTime.ToString("t"));
                     }
                     break;
 
@@ -146,17 +147,17 @@ namespace CinemaApp
                     hallTimes.Clear();
                     ActiveTimes.Clear();
                     SeanceTime.Children.Clear();
-                    for (int i = 7; i < 13; i++)
+                    for (int i = 8; i < 14; i++)
                     {
                         var checkbox = new CheckBox
                         {
-                            Content = ApplicationContext.tmptimes[i].SeanceTime.ToString("t"),
+                            Content = Time.GetTimeByID(i).SeanceTime.ToString("t"),
                             FontSize = 22
                         };
                         checkbox.Checked += TimeChecked;
                         checkbox.Unchecked += TimeUnchecked;
                         SeanceTime.Children.Add(checkbox);
-                        hallTimes.Add(ApplicationContext.tmptimes[i].SeanceTime.ToString("t"));
+                        hallTimes.Add(Time.GetTimeByID(i).SeanceTime.ToString("t"));
                     }
                     break;
 
@@ -166,90 +167,90 @@ namespace CinemaApp
                     SeanceTime.Children.Clear();
                     var solocheckbox = new CheckBox
                     {
-                        Content = ApplicationContext.tmptimes[0].SeanceTime.ToString("t"),
+                        Content = Time.GetTimeByID(1).SeanceTime.ToString("t"),
                         FontSize = 22
                     };
                     solocheckbox.Checked += TimeChecked;
                     solocheckbox.Unchecked += TimeUnchecked;
                     SeanceTime.Children.Add(solocheckbox);
-                    hallTimes.Add(ApplicationContext.tmptimes[0].SeanceTime.ToString("t"));
+                    hallTimes.Add(Time.GetTimeByID(1).SeanceTime.ToString("t"));
 
                     solocheckbox = new CheckBox
                     {
-                        Content = ApplicationContext.tmptimes[8].SeanceTime.ToString("t"),
+                        Content = Time.GetTimeByID(9).SeanceTime.ToString("t"),
                         FontSize = 22
                     };
                     solocheckbox.Checked += TimeChecked;
                     solocheckbox.Unchecked += TimeUnchecked;
                     SeanceTime.Children.Add(solocheckbox);
-                    hallTimes.Add(ApplicationContext.tmptimes[8].SeanceTime.ToString("t"));
-                    for (int i = 13; i < 18; i++)
+                    hallTimes.Add(Time.GetTimeByID(9).SeanceTime.ToString("t"));
+                    for (int i = 14; i < 19; i++)
                     {
                         var checkbox = new CheckBox
                         {
-                            Content = ApplicationContext.tmptimes[i].SeanceTime.ToString("t"),
+                            Content = Time.GetTimeByID(i).SeanceTime.ToString("t"),
                             FontSize = 22
                         };
                         checkbox.Checked += TimeChecked;
                         checkbox.Unchecked += TimeUnchecked;
                         SeanceTime.Children.Add(checkbox);
-                        hallTimes.Add(ApplicationContext.tmptimes[i].SeanceTime.ToString("t"));
+                        hallTimes.Add(Time.GetTimeByID(i).SeanceTime.ToString("t"));
                     }
                     break;
                 case "Зал 4":
                     hallTimes.Clear();
                     ActiveTimes.Clear();
                     SeanceTime.Children.Clear();
-                    for (int i = 18; i < 21; i++)
+                    for (int i = 19; i < 22; i++)
                     {
                         var checkbox = new CheckBox
                         {
-                            Content = ApplicationContext.tmptimes[i].SeanceTime.ToString("t"),
+                            Content = Time.GetTimeByID(i).SeanceTime.ToString("t"),
                             FontSize = 22
                         };
                         checkbox.Checked += TimeChecked;
                         checkbox.Unchecked += TimeUnchecked;
                         SeanceTime.Children.Add(checkbox);
-                        hallTimes.Add(ApplicationContext.tmptimes[i].SeanceTime.ToString("t"));
+                        hallTimes.Add(Time.GetTimeByID(i).SeanceTime.ToString("t"));
                     }
-                    for (int i = 10; i < 12; i++)
+                    for (int i = 11; i < 13; i++)
                     {
                         var checkbox = new CheckBox
                         {
-                            Content = ApplicationContext.tmptimes[i].SeanceTime.ToString("t"),
+                            Content = Time.GetTimeByID(i).SeanceTime.ToString("t"),
                             FontSize = 22
                         };
                         checkbox.Checked += TimeChecked;
                         checkbox.Unchecked += TimeUnchecked;
                         SeanceTime.Children.Add(checkbox);
-                        hallTimes.Add(ApplicationContext.tmptimes[i].SeanceTime.ToString("t"));
+                        hallTimes.Add(Time.GetTimeByID(i).SeanceTime.ToString("t"));
                     }
                     solocheckbox = new CheckBox
                     {
-                        Content = ApplicationContext.tmptimes[21].SeanceTime.ToString("t"),
+                        Content = Time.GetTimeByID(22).SeanceTime.ToString("t"),
                         FontSize = 22
                     };
                     solocheckbox.Checked += TimeChecked;
                     solocheckbox.Unchecked += TimeUnchecked;
                     SeanceTime.Children.Add(solocheckbox);
-                    hallTimes.Add(ApplicationContext.tmptimes[21].SeanceTime.ToString("t"));
+                    hallTimes.Add(Time.GetTimeByID(22).SeanceTime.ToString("t"));
                     break;
 
                 case "Зал 5":
                     hallTimes.Clear();
                     ActiveTimes.Clear();
                     SeanceTime.Children.Clear();
-                    for (int i = 22; i < 29; i++)
+                    for (int i = 23; i < 30; i++)
                     {
                         var checkbox = new CheckBox
                         {
-                            Content = ApplicationContext.tmptimes[i].SeanceTime.ToString("t"),
+                            Content = Time.GetTimeByID(i).SeanceTime.ToString("t"),
                             FontSize = 22
                         };
                         checkbox.Checked += TimeChecked;
                         checkbox.Unchecked += TimeUnchecked;
                         SeanceTime.Children.Add(checkbox);
-                        hallTimes.Add(ApplicationContext.tmptimes[i].SeanceTime.ToString("t"));
+                        hallTimes.Add(Time.GetTimeByID(i).SeanceTime.ToString("t"));
                     }
                     break;
             }

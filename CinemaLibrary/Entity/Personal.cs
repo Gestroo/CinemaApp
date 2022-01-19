@@ -15,6 +15,12 @@ namespace CinemaLibrary.Entity
         public virtual Role Role { get; set; }
         private static ApplicationContext db = Context.Db;
 
+        public Personal(string LastName, string FirstName, string MiddleName, string PhoneNumber)
+            : base(LastName, FirstName, MiddleName, PhoneNumber)
+        {
+
+        }
+        public Personal(string LastName, string FirstName, string PhoneNumber) : base(LastName, FirstName, PhoneNumber) { }
         public static Personal GetPersonal(string Login, string Password)
         {
             return db.Personal.Where(g => g.Login == Login && g.Password == Password).FirstOrDefault();

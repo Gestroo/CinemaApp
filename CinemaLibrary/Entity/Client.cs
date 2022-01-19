@@ -20,8 +20,8 @@ namespace CinemaLibrary.Entity
             Bookings = new List<Booking>();
         }
 
-        public Client(string Surname, string Name, string MiddleName, string PhoneNumber, DateTime BirthDate)
-            : base(Surname, Name, MiddleName, PhoneNumber)
+        public Client(string LastName, string FirstName, string MiddleName, string PhoneNumber, DateTime BirthDate)
+            : base(LastName, FirstName, MiddleName, PhoneNumber)
         {
             this.BirthDate = BirthDate;
             Bookings = new List<Booking>();

@@ -23,6 +23,7 @@ namespace CinemaLibrary
         public DbSet<Role> Role { get; set; }
         public DbSet<Seance> Seance { get; set; }
         public DbSet<Ticket> Ticket { get; set; }
+        public DbSet<Time> Time { get; set; }
 
         public static DbContextOptions<ApplicationContext> GetDb()
         {
@@ -33,6 +34,7 @@ namespace CinemaLibrary
         public static List<Time> tmptimes;
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<Human>();
             modelBuilder.Entity<Seance>().Ignore(s => s.Date).Ignore(s => s.Time);
             modelBuilder.Entity<Film>().Ignore(f => f.Genres).Ignore(f => f.ogranPlus);
             modelBuilder.Entity<Seance>().HasMany(s => s.BoughtSeats).WithMany(bs => bs.BoughtSeances).UsingEntity(j => j.ToTable("SeanceBoughtSeats"));

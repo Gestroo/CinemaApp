@@ -18,6 +18,7 @@ namespace CinemaLibrary.Entity
 
         public virtual List<HallSeat> BoughtSeats { get; set; }
         public virtual List<HallSeat> ReservedSeats { get; set; }
+        public int Cost { get; set; }
 
         public string Date { get { return SeanceDate.ToString("d"); } }
         public string Time { get { return SeanceDate.ToString("t"); } }

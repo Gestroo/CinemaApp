@@ -22,6 +22,7 @@ namespace CinemaApp
             LoadData();
             LoadSeatsInfo();
             notify += GetBookingEvent;
+            UpdateCost();
         }
 
         public event GetBooking notify;
@@ -60,6 +61,10 @@ namespace CinemaApp
 
         }
 
+        private void UpdateCost() 
+        {
+             TotalCostTextBlock.Text =  "Cтоимость : " + (_seance.Cost * checkedButtons.Count).ToString();
+        }
         private void GetBookingEvent(Booking booking)
         {
             this.booking = booking;
@@ -97,6 +102,7 @@ namespace CinemaApp
                 if (checkedButtons.Count == 0)
                     lastCheckedButton = null;
                 else lastCheckedButton = checkedButtons[checkedButtons.Count - 1];
+                UpdateCost();
             }
             else
             {
@@ -115,6 +121,7 @@ namespace CinemaApp
                 checkedButtons.Add(tmp_button);
                 tmp_button.Background = Brushes.Gray;
                 lastCheckedButton = tmp_button;
+                UpdateCost();
             }
 
         }
@@ -153,6 +160,7 @@ namespace CinemaApp
             lastCheckedButton = null;
             LoadSeatsInfo();
             checkedButtons.Clear();
+            UpdateCost();
         }
         /// <summary>
         /// Покупка билетов
@@ -221,6 +229,7 @@ namespace CinemaApp
                     }
                 }
                 checkedButtons.Clear();
+                UpdateCost();
             }
 
         }
@@ -274,6 +283,7 @@ namespace CinemaApp
             }
             _seance.Save();
             checkedButtons.Clear();
+            UpdateCost();
         }
         /// <summary>
         /// Вывод прототипа билета

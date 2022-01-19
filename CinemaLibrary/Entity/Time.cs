@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace CinemaLibrary.Entity
 {
@@ -11,11 +12,14 @@ namespace CinemaLibrary.Entity
         public DateTime SeanceTime { get; set; }
 
         public virtual List<CinemaHall> Halls { get; set; }
-
+        private static ApplicationContext db = Context.Db;
         public Time()
         {
             Halls = new List<CinemaHall>();
         }
-
+        public static Time GetTimeByID(int id) 
+        {
+            return db.Time.FirstOrDefault(t => t.ID == id);     
+        }
     }
 }

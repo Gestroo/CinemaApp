@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CinemaLibrary.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220118174141_NotEvenCloseToFinalMigration")]
-    partial class NotEvenCloseToFinalMigration
+    [Migration("20220119171201_SecondFinalMigration")]
+    partial class SecondFinalMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -64,7 +64,6 @@ namespace CinemaLibrary.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("HallName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("HallNumber");
@@ -110,18 +109,28 @@ namespace CinemaLibrary.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("MiddleName")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique();
 
                     b.ToTable("Client");
                 });
@@ -2193,29 +2202,39 @@ namespace CinemaLibrary.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Login")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("MiddleName")
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.Property<int>("RoleID")
                         .HasColumnType("integer");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique();
 
                     b.HasIndex("RoleID");
 
@@ -2230,6 +2249,7 @@ namespace CinemaLibrary.Migrations
                             Login = "admin",
                             MiddleName = "Романович",
                             Password = "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918",
+                            PhoneNumber = "+79513538360",
                             RoleID = 1
                         },
                         new
@@ -2240,6 +2260,7 @@ namespace CinemaLibrary.Migrations
                             Login = "cashier1",
                             MiddleName = "Григорьевна",
                             Password = "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5",
+                            PhoneNumber = "+79229334455",
                             RoleID = 2
                         });
                 });
@@ -2302,6 +2323,9 @@ namespace CinemaLibrary.Migrations
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int?>("CinemaHallHallNumber")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Cost")
                         .HasColumnType("integer");
 
                     b.Property<int?>("FilmID")
