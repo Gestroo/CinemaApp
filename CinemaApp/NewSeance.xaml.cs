@@ -7,7 +7,7 @@ using System.Windows.Controls;
 namespace CinemaApp
 {
     /// <summary>
-    /// Логика взаимодействия для NewSeance.xaml
+    /// Класс добавляющий новый фильм в базу данных
     /// </summary>
     public partial class NewSeance : Page
     {

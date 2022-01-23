@@ -37,7 +37,7 @@ namespace CinemaLibrary.Entity
         }
         public static void Add(Client client)
         {
-            db.Add(client);
+            db.Client.Add(client);
             db.SaveChanges();
         }
         public override string GetFullName()

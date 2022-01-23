@@ -9,7 +9,7 @@ using static CinemaApp.MainWindow;
 namespace CinemaApp
 {
     /// <summary>
-    /// Логика взаимодействия для Hall1.xaml
+    /// Управление местами и билетами
     /// </summary>
     public partial class Hall1 : Window
     {
@@ -292,6 +292,7 @@ namespace CinemaApp
         /// <param name="e"></param>
         private void TicketPrototypeButton_Click(object sender, RoutedEventArgs e)
         {
+            TicketPrototype ticketPrototype;
             if (lastCheckedButton == null)
             {
                 string message = "Нет выбранного билета";
@@ -299,13 +300,20 @@ namespace CinemaApp
                 return;
             }
 
+
             var name = lastCheckedButton.Name;
             int number;
             int row = int.Parse(name.Substring(1, 1));
             if (name.Length == 11)
                 number = int.Parse(name.Substring(3, 2));
             else number = int.Parse(name.Substring(3, 1));
-            TicketPrototype ticketPrototype = new TicketPrototype(_personal, _seance, row, number);
+            if (_seance.ReservedSeats.Contains(HallSeat.FindSeat(row, number))) 
+            {
+                var client = Client.FindClientByTicket(_seance, row, number);
+                 ticketPrototype = new TicketPrototype(_personal, _seance,client, row, number);
+            }
+            else
+             ticketPrototype = new TicketPrototype(_personal, _seance, row, number);
             ticketPrototype.Show();
 
         }

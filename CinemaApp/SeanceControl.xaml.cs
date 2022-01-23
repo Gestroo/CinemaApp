@@ -1,5 +1,4 @@
-﻿using CinemaLibrary;
-using CinemaLibrary.Entity;
+﻿using CinemaLibrary.Entity;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -8,7 +7,7 @@ using System.Windows.Controls;
 namespace CinemaApp
 {
     /// <summary>
-    /// Логика взаимодействия для SeanceControl.xaml
+    /// Класс, добавляющий сеансы в базу данных
     /// </summary>
     public partial class SeanceControl : Page
     {
@@ -267,7 +266,5 @@ namespace CinemaApp
             if (ActiveTimes.Contains(((CheckBox)sender).Content.ToString()))
                 ActiveTimes.Remove(((CheckBox)sender).Content.ToString());
         }
-
-
     }
 }
