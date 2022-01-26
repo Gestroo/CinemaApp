@@ -119,7 +119,7 @@
                 Пользователя
             </TextBlock>
         </Button>
-        <ComboBox x:Name="RestrictionComboBox" Grid.Column="3" Padding="5 5 0 0" MaxHeight="40" materialDesign:HintAssist.Hint="Выберите категорию" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray"  LostMouseCapture="RestrictionComboBox_LostMouseCapture">
+        <ComboBox x:Name="RestrictionComboBox" Grid.Column="3" Padding="5 5 0 0" MaxHeight="40" materialDesign:HintAssist.Hint="Выберите категорию" Margin="10 0 10 10" FontSize="18"  materialDesign:HintAssist.Foreground="Gray"  SelectionChanged="RestrictionComboBox_SelectionChanged">
             <ComboBoxItem Content="0+"/>
             <ComboBoxItem Content="6+"/>
             <ComboBoxItem Content="12+"/>

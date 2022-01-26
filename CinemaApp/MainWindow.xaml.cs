@@ -54,7 +54,12 @@ namespace CinemaApp
             }
             if (RestrictionComboBox.SelectedItem != null)
             {
-                seances = seances.Where(s => s.Film.Restriction.ToString() == RestrictionComboBox.Text).ToList();
+                int tmp;
+                try
+                { tmp = int.Parse(RestrictionComboBox.SelectedValue.ToString().Substring(RestrictionComboBox.SelectedValue.ToString().Length - 3, 2)); }
+                catch
+                { tmp = int.Parse(RestrictionComboBox.SelectedValue.ToString().Substring(RestrictionComboBox.SelectedValue.ToString().Length - 2, 1)); }
+                seances = seances.Where(s => s.Film.Restriction == tmp).ToList();
             }
             if (hallsComboBox.SelectedItem != null)
             {
@@ -169,10 +174,10 @@ namespace CinemaApp
 
         }
 
-        private void RestrictionComboBox_LostMouseCapture(object sender, MouseEventArgs e)
+        /*private void RestrictionComboBox_LostMouseCapture(object sender, MouseEventArgs e)
         {
             UpdateData();
-        }
+        }*/
 
 
         private void ActiveSeancesCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -194,6 +199,9 @@ namespace CinemaApp
             UpdateData();
         }
 
-
+        private void RestrictionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateData();
+        }
     }
 }

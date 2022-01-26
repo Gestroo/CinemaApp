@@ -48,13 +48,14 @@ namespace CinemaApp
                     number = int.Parse(name.Substring(3, 2));
                 else number = int.Parse(name.Substring(3, 1));
 
-                if (_seance.BoughtSeats.Contains(HallSeat.FindSeat(row, number)))
-                {
-                    tmp.Background = Brushes.IndianRed;
-                }
+
                 if (_seance.ReservedSeats.Contains(HallSeat.FindSeat(row, number)))
                 {
                     tmp.Background = Brushes.Aquamarine;
+                }
+                if (_seance.BoughtSeats.Contains(HallSeat.FindSeat(row, number)))
+                {
+                    tmp.Background = Brushes.IndianRed;
                 }
 
             }
@@ -155,9 +156,10 @@ namespace CinemaApp
                     }
                 }
                 b.Background = Brushes.White;
-
+                _seance.ReservedSeats.Remove(HallSeat.FindSeat(row, number));
 
             }
+            _seance.Save();
             lastCheckedButton = null;
             LoadSeatsInfo();
             checkedButtons.Clear();
@@ -171,10 +173,12 @@ namespace CinemaApp
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
             string message = null;
+            int count = 0;
             {
                 foreach (var b in checkedButtons)
 
                 {
+
                     var name = b.Name;
                     int number;
                     int row = int.Parse(name.Substring(1, 1));
@@ -185,9 +189,10 @@ namespace CinemaApp
                     if (_seance.ReservedSeats.Contains(HallSeat.FindSeat(row, number)))
                     {
                         message += $"{Environment.NewLine} Ряд : {row} Место : {number} Бронь :{Client.FindClientByTicket(_seance, row, number).GetFIO()}";
+                        count++;
                     }
                 }
-                if (_seance.ReservedSeats.Count != 0)
+                if (count != 0)
                 {
                     MessageBoxResult result = MessageBox.Show(
            $"Присутстcвует бронь: {message}",
